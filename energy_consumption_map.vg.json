@@ -54,144 +54,165 @@
     }
   ],
   "layer": [
-    {
-      "data": {
-        "url": "data/SA2_2021_Victoria.topojson",
-        "format": {
-          "type": "topojson",
-          "feature": "SA2_2021_Victoria_filtered"
-        }
-      },
-      "mark": {
-        "type": "geoshape",
-        "fill": "lightgrey",
-        "stroke": "white",
-        "strokeWidth": 0.5
-      },
-      "encoding": {
-        "tooltip": [
-          {"field": "properties.SA2_NAME21", "type": "nominal", "title": "SA2 Name"}
-        ]
-      }
-    },
-    {
-      "data": {
-        "url": "data/SA2_2021_Victoria.topojson",
-        "format": {
-          "type": "topojson",
-          "feature": "SA2_2021_Victoria_filtered"
-        }
-      },
-      "transform": [
-        {
-          "lookup": "properties.SA2_CODE21",
-          "from": {
-            "data": {
-              "url": "http://static.aremi.data61.io/datasets/abs-consumption/supplied-sa2s.csv",
-              "format": {"type": "csv"}
-            },
-            "key": "sa2_code_2011",
-            "fields": ["Mean - 2012 (kWh)"]
-          },
-          "as": ["Mean_Consumption"]
-        },
-        {
-          "filter": "datum.Mean_Consumption > 0"
-        }
-      ],
-      "mark": {
-        "type": "geoshape",
-        "stroke": "white",
-        "strokeWidth": 0.05
-      },
-      "encoding": {
-        "color": {
-          "field": "Mean_Consumption",
-          "type": "quantitative",
-          "scale": {
-            "type": "quantize",
-            "scheme": "blues",
-            "domain": [800, 16000]
-          },
-          "legend": {
-            "title": "Mean Energy Consumed (kWh)",
-            "orient": "right",
-            "format": "d",
-            "labelExpr": "datum.label == 800 ? 'Min (800)' : datum.label == 16000 ? 'Max (16000)' : datum.label"
+      {
+        "data": {
+          "url": "data/SA2_2021_Victoria.topojson",
+          "format": {
+            "type": "topojson",
+            "feature": "SA2_2021_Victoria_filtered"
           }
         },
-        "tooltip": [
-          {"field": "properties.SA2_NAME21", "type": "nominal", "title": "SA2 Name"},
-          {"field": "Mean_Consumption", "type": "quantitative", "title": "Mean Energy Consumed (kWh)"}
-        ]
-      }
-    },
-    {
-      "data": {
-        "url": "data/ENERGY_FACILITIES.json",
-        "format": {
-          "type": "json",
-          "property": "features"
+        "transform": [
+          {
+            "filter": "datum.properties.STE_NAME21 === 'Victoria'"
+          }
+        ],
+        "mark": {
+          "type": "geoshape",
+          "fill": "lightgrey",
+          "stroke": "white",
+          "strokeWidth": 0.5
+        },
+        "encoding": {
+          "tooltip": [
+            {"field": "properties.SA2_NAME21", "type": "nominal", "title": "SA2 Name"}
+          ]
         }
       },
-      "transform": [
-        {
-          "filter": "facilityTypeSelection == null || datum.properties.TYPE == facilityTypeSelection"
-        }
-      ],
-      "mark": {
-        "type": "circle",
-        "size": 30,
-        "opacity": 0.8,
-        "strokeWidth": 0
-      },
-      "encoding": {
-        "longitude": {
-          "field": "geometry.coordinates[0]",
-          "type": "quantitative"
+      {
+        "data": {
+          "url": "data/SA2_2021_Victoria.topojson",
+          "format": {
+            "type": "topojson",
+            "feature": "SA2_2021_Victoria_filtered"
+          }
         },
-        "latitude": {
-          "field": "geometry.coordinates[1]",
-          "type": "quantitative"
-        },
-        "color": {
-          "field": "properties.TYPE",
-          "type": "nominal",
-          "scale": {
-            "domain": ["Plant", "Platform", "Power Station", "Refinery", "Mill", "Compressor Station", "City Gate Station", "Liquids Jetty", "CTM", "Terminal Station", "Delivery Facility", "Pipeline Connection", "Subsea Production Facilities", "Cogeneration Plant", "Trigeneration Plant"],
-            "range": ["#e41a1c", "#377eb8", "#4daf4a", "#984ea3", "#ff7f00", "#ffff33", "#a65628", "#f781bf", "#999999", "#66c2a5", "#fc8d62", "#8da0cb", "#e78ac3", "#a6d854", "#ffd92f"]
+        "transform": [
+          {
+            "filter": "datum.properties.STE_NAME21 === 'Victoria'"
           },
-          "title": "Facility Type"
+          {
+            "lookup": "properties.SA2_CODE21",
+            "from": {
+              "data": {
+                "url": "data/generated-sa2s.csv",
+                "format": {"type": "csv"}
+              },
+              "key": "sa2_code_2011",
+              "fields": ["Mean - 2012 (kWh)"]
+            },
+            "as": ["Mean_Generated"]
+          },
+          {
+            "lookup": "properties.SA2_CODE21",
+            "from": {
+              "data": {
+                "url": "data/supplied-sa2s.csv",
+                "format": {"type": "csv"}
+              },
+              "key": "sa2_code_2011",
+              "fields": ["Mean - 2012 (kWh)"]
+            },
+            "as": ["Mean_Consumption"]
+          },
+          {
+            "filter": "datum.Mean_Consumption > 0"
+          }
+        ],
+        "mark": {
+          "type": "geoshape",
+          "stroke": "white",
+          "strokeWidth": 0.05
         },
-        "tooltip": [
-          {"field": "properties.DESC_SDE", "type": "nominal", "title": "Name"},
-          {"field": "properties.TYPE", "type": "nominal", "title": "Type"},
-          {"field": "properties.RSOURCESDE", "type": "nominal", "title": "Resource"},
-          {"field": "properties.COMPANY", "type": "nominal", "title": "Company"}
-        ]
-      }
-    },
-    {
-      "data": {
-        "values": [
-          {"city": "Melbourne", "lon": 144.9631, "lat": -37.8136},
-          {"city": "Geelong", "lon": 144.3600, "lat": -38.1499},
-          {"city": "Ballarat", "lon": 143.8503, "lat": -37.5622},
-          {"city": "Bendigo", "lon": 144.2800, "lat": -36.7570}
-        ]
+        "encoding": {
+          "color": {
+            "field": "Mean_Consumption",
+            "type": "quantitative",
+            "scale": {
+                "type": "quantize",
+                "scheme": "blues",
+                "domain": [800, 16000]
+            },
+            "legend": {
+                "title": "Mean Energy Consumed (kWh)",
+                "orient": "right",
+                "format": "d",
+                "labelExpr": "datum.label == 800 ? 'Min (800)' : datum.label == 16000 ? 'Max (16000)' : datum.label"
+            }
+            },
+          "tooltip": [
+            {"field": "properties.SA2_NAME21", "type": "nominal", "title": "SA2 Name"},
+            {"field": "Mean_Consumption", "type": "quantitative", "title": "Mean Energy Consumed (kWh)"},
+            {"field": "Mean_Generated", "type": "quantitative", "title": "Mean Energy Generated (kWh)"}
+          ]
+        }
       },
-      "mark": {
-        "type": "text",
-        "fontSize": 10,
-        "fontWeight": "bold",
-        "dx": 5,
-        "dy": -5
+      {
+        "data": {
+          "url": "data/ENERGY_FACILITIES.json",
+          "format": {
+            "type": "json",
+            "property": "features"
+          }
+        },
+        "transform": [
+          {
+            "filter": "facilityTypeSelection == null || datum.properties.TYPE == facilityTypeSelection"
+          }
+        ],
+        "mark": {
+          "type": "circle",
+          "size": 30,
+          "opacity": 0.8,
+          "strokeWidth": 0
+        },
+        "encoding": {
+          "longitude": {
+            "field": "geometry.coordinates[0]",
+            "type": "quantitative"
+          },
+          "latitude": {
+            "field": "geometry.coordinates[1]",
+            "type": "quantitative"
+          },
+          "color": {
+            "field": "properties.TYPE",
+            "type": "nominal",
+            "scale": {
+              "domain": ["Plant", "Platform", "Power Station", "Refinery", "Mill", "Compressor Station", "City Gate Station", "Liquids Jetty", "CTM", "Terminal Station", "Delivery Facility", "Pipeline Connection", "Subsea Production Facilities", "Cogeneration Plant", "Trigeneration Plant"],
+              "range": ["#e41a1c", "#377eb8", "#4daf4a", "#984ea3", "#ff7f00", "#ffff33", "#a65628", "#f781bf", "#999999", "#66c2a5", "#fc8d62", "#8da0cb", "#e78ac3", "#a6d854", "#ffd92f"]
+            },
+            "title": "Facility Type"
+          },
+          "tooltip": [
+            {"field": "properties.DESC_SDE", "type": "nominal", "title": "Name"},
+            {"field": "properties.TYPE", "type": "nominal", "title": "Type"},
+            {"field": "properties.RSOURCESDE", "type": "nominal", "title": "Resource"},
+            {"field": "properties.COMPANY", "type": "nominal", "title": "Company"}
+          ]
+        }
       },
-      "encoding": {
-        "longitude": {"field": "lon", "type": "quantitative"},
-        "latitude": {"field": "lat", "type": "quantitative"},
-        "text": {"field": "city", "type": "nominal"}
+      {
+        "data": {
+          "values": [
+            {"city": "Melbourne", "lon": 144.9631, "lat": -37.8136},
+            {"city": "Geelong", "lon": 144.3600, "lat": -38.1499},
+            {"city": "Ballarat", "lon": 143.8503, "lat": -37.5622},
+            {"city": "Bendigo", "lon": 144.2800, "lat": -36.7570}
+          ]
+        },
+        "mark": {
+          "type": "text",
+          "fontSize": 10,
+          "fontWeight": "bold",
+          "dx": 5,
+          "dy": -5
+        },
+        "encoding": {
+          "longitude": {"field": "lon", "type": "quantitative"},
+          "latitude": {"field": "lat", "type": "quantitative"},
+          "text": {"field": "city", "type": "nominal"}
+        }
       }
-    }
-  ]
-}
+    ]
+  }

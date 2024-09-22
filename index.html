@@ -17,11 +17,11 @@
         #vis {
             width: 100%;
             height: 80%;
-            max-width: 1400px; /* Increased from 800px */
+            max-width: 1400px;
             margin: 0 auto;
             background-color: white;
             box-shadow: 0 0 10px rgba(0,0,0,0.1);
-            padding: 20px; /* Added padding */
+            padding: 20px;
         }
     </style>
 </head>
@@ -29,7 +29,6 @@
     <div id="vis"></div>
 
     <script>
-        // Load the JSON specification from an external file
         fetch('energy_consumption_map.vg.json')
             .then(response => response.json())
             .then(spec => {
