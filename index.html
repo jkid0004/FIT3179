@@ -3,40 +3,84 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Victoria Electricity Consumption Visualisation</title>
+    <title>Victoria Water and Electricity Consumption Dashboard</title>
     <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
     <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
     <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
     <style>
         body {
             font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 20px;
-            background-color: #f0f0f0;
-        }
-        #vis {
-            width: 100%;
-            max-width: 800px;
+            line-height: 1.6;
+            color: #333;
+            max-width: 1000px;
             margin: 0 auto;
-            background-color: white;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             padding: 20px;
         }
         h1 {
+            color: #2c3e50;
             text-align: center;
-            color: #333;
+            font-size: 24px;
+        }
+        .dashboard {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .visualization {
+            width: 100%;
+            max-width: 800px;
+            margin-bottom: 30px;
+        }
+        .explanation {
+            background-color: #f8f9fa;
+            border-left: 4px solid #007bff;
+            padding: 15px;
+            margin-top: 20px;
+            font-size: 14px;
+        }
+        h2 {
+            font-size: 18px;
+            text-align: center;
         }
     </style>
 </head>
 <body>
-    <div id="vis"></div>
+    <h1>Victoria Water and Electricity Consumption Dashboard</h1>
+    
+    <div class="dashboard">
+        <div class="visualization">
+            <h2>Water vs Electricity Consumption in Melbourne Suburbs by Region</h2>
+            <div id="vis1"></div>
+            <div class="explanation">
+                <p>By comparing the different Melbourne suburbs by region you can see a clear divide between the regions alongside how the suburbs water and electricities completely contrast dependent on their situation in Melbourne. In Melbourne has the highest energy consumption whilst Northern Melbourne has the highest water consumption.</p>
+            </div>
+        </div>
+
+        <div class="visualization">
+            <h2>Victoria Energy Consumption, Production and Facilities by SA2 (2012)</h2>
+            <div id="vis2"></div>
+            <div class="explanation">
+                <p>The visualisation clearly shows how the different regions of Victoria produce and consume power for the rest of the state, you can additonally observe how the the different facilities in victoria produce and provide power to eachother.</p>
+            </div>
+        </div>
+    </div>
+
     <script>
-        vegaEmbed('#vis', 'vic-consumption-water-elec.json')
-            .then(function(result) {
-                // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
-            })
-            .catch(console.error);
+        // Embed the first visualization
+        vegaEmbed('#vis1', 'vic-consumption-water-elec.json', {
+            "actions": false,
+            "config": {
+                "view": {"width": 600, "height": 400}
+            }
+        });
+
+        // Embed the second visualization
+        vegaEmbed('#vis2', 'energy_consumption_map.vg.json', {
+            "actions": false,
+            "config": {
+                "view": {"width": 800, "height": 600}
+            }
+        });
     </script>
 </body>
 </html>

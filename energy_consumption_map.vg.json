@@ -1,12 +1,12 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "width": 1160,
-  "height": 800,
+  "width": 800,
+  "height": 400,
   "title": "Victoria Energy Consumption, Production and Facilities by SA2 (2012)",
   "projection": {
     "type": "mercator",
-    "center": [145.7, -37],
-    "scale": 6000
+    "center": [145.7, -36.5],
+    "scale": 3500
   },
   "params": [
     {
@@ -134,10 +134,13 @@
                 "domain": [800, 16000]
             },
             "legend": {
-                "title": "Mean Energy Consumed (kWh)",
-                "orient": "right",
-                "format": "d",
-                "labelExpr": "datum.label == 800 ? 'Min (800)' : datum.label == 16000 ? 'Max (16000)' : datum.label"
+              "title": "Mean Energy Consumed (kWh)",
+              "orient": "bottom",
+              "direction": "horizontal",
+              "gradientLength": 400,
+              "gradientThickness": 20,
+              "format": "d",
+              "labelExpr": "datum.label == 800 ? 'Min (800)' : datum.label == 16000 ? 'Max (16000)' : datum.label"
             }
             },
           "tooltip": [
@@ -182,7 +185,14 @@
               "domain": ["Plant", "Platform", "Power Station", "Refinery", "Mill", "Compressor Station", "City Gate Station", "Liquids Jetty", "CTM", "Terminal Station", "Delivery Facility", "Pipeline Connection", "Subsea Production Facilities", "Cogeneration Plant", "Trigeneration Plant"],
               "range": ["#e41a1c", "#377eb8", "#4daf4a", "#984ea3", "#ff7f00", "#ffff33", "#a65628", "#f781bf", "#999999", "#66c2a5", "#fc8d62", "#8da0cb", "#e78ac3", "#a6d854", "#ffd92f"]
             },
-            "title": "Facility Type"
+            "legend": {
+              "title": "Facility Type",
+              "orient": "bottom",
+              "direction": "horizontal",
+              "columns": 5,
+              "labelLimit": 150,
+              "symbolLimit": 20
+            }
           },
           "tooltip": [
             {"field": "properties.DESC_SDE", "type": "nominal", "title": "Name"},
@@ -214,5 +224,11 @@
           "text": {"field": "city", "type": "nominal"}
         }
       }
-    ]
+    ],
+    "config": {
+      "legend": {
+        "layout": {"bottom": {"anchor": "middle"}},
+        "offset": 5
+      }
+    }
   }
