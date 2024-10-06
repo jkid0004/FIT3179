@@ -2,7 +2,6 @@
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "width": 800,
   "height": 400,
-  "title": "Victoria Energy Consumption, Production and Facilities by SA2 (2012)",
   "projection": {
     "type": "mercator",
     "center": [145.7, -36.5],
