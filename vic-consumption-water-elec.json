@@ -19,44 +19,98 @@
   ],
   "width": 600,
   "height": 400,
-  "mark": {"type": "point", "filled": true},
-  "encoding": {
-    "x": {
-      "field": "2009",
-      "type": "quantitative",
-      "title": "Water Consumption (L/household/day)",
-      "scale": {"domain": [200, 650]}
-    },
-    "y": {
-      "field": "Mean - 2010 (kWh)",
-      "type": "quantitative",
-      "title": "Electricity Consumption (kWh/year)",
-      "scale": {"domain": [2000, 12000]}
-    },
-    "color": {
-      "field": "Region",
-      "type": "nominal",
-      "scale": {
-        "scheme": "category10",
-        "domain": [
-          "Inner Melbourne",
-          "Western Melbourne",
-          "Northern Melbourne",
-          "Eastern Melbourne",
-          "Southern Melbourne",
-          "Bayside Peninsula"
+  "layer": [
+    {
+      "mark": {"type": "point", "filled": true},
+      "encoding": {
+        "x": {
+          "field": "2009",
+          "type": "quantitative",
+          "title": "Water Consumption (L/household/day)",
+          "scale": {"domain": [200, 650]}
+        },
+        "y": {
+          "field": "Mean - 2010 (kWh)",
+          "type": "quantitative",
+          "title": "Electricity Consumption (kWh/year)",
+          "scale": {"domain": [2000, 13000]}
+        },
+        "color": {
+          "field": "Region",
+          "type": "nominal",
+          "scale": {
+            "scheme": "category10",
+            "domain": [
+              "Inner Melbourne",
+              "Western Melbourne",
+              "Northern Melbourne",
+              "Eastern Melbourne",
+              "Southern Melbourne",
+              "Bayside Peninsula"
+            ]
+          },
+          "legend": {"title": "Region"}
+        },
+        "tooltip": [
+          {"field": "Suburbs", "type": "nominal", "title": "Suburb"},
+          {"field": "PC", "type": "nominal", "title": "Postal Code"},
+          {"field": "Region", "type": "nominal", "title": "Region"},
+          {"field": "2009", "type": "quantitative", "title": "Water Consumption 2009 (L/household/day)"},
+          {"field": "Mean - 2010 (kWh)", "type": "quantitative", "title": "Electricity Consumption 2010 (kWh/year)"}
         ]
-      },
-      "legend": {"title": "Region"}
+      }
     },
-    "tooltip": [
-      {"field": "Suburbs", "type": "nominal", "title": "Suburb"},
-      {"field": "PC", "type": "nominal", "title": "Postal Code"},
-      {"field": "Region", "type": "nominal", "title": "Region"},
-      {"field": "2009", "type": "quantitative", "title": "Water Consumption 2009 (L/household/day)"},
-      {"field": "Mean - 2010 (kWh)", "type": "quantitative", "title": "Electricity Consumption 2010 (kWh/year)"}
-    ]
-  },
+    {
+      "transform": [
+        {
+          "window": [{"op": "rank", "as": "rank"}],
+          "sort": [{"field": "2009", "order": "descending"}],
+          "groupby": ["Region"]
+        },
+        {"filter": "datum.rank == 1"}
+      ],
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "baseline": "middle",
+        "dx": 5,
+        "dy": -5,
+        "fontSize": 8,
+        "fontStyle": "italic"
+      },
+      "encoding": {
+        "x": {"field": "2009", "type": "quantitative"},
+        "y": {"field": "Mean - 2010 (kWh)", "type": "quantitative"},
+        "text": {"field": "Suburbs", "type": "nominal"},
+        "color": {"field": "Region", "type": "nominal"}
+      }
+    },
+    {
+      "transform": [
+        {
+          "window": [{"op": "rank", "as": "rank"}],
+          "sort": [{"field": "2009", "order": "ascending"}],
+          "groupby": ["Region"]
+        },
+        {"filter": "datum.rank == 1"}
+      ],
+      "mark": {
+        "type": "text",
+        "align": "right",
+        "baseline": "middle",
+        "dx": -5,
+        "dy": 5,
+        "fontSize": 8,
+        "fontStyle": "italic"
+      },
+      "encoding": {
+        "x": {"field": "2009", "type": "quantitative"},
+        "y": {"field": "Mean - 2010 (kWh)", "type": "quantitative"},
+        "text": {"field": "Suburbs", "type": "nominal"},
+        "color": {"field": "Region", "type": "nominal"}
+      }
+    }
+  ],
   "params": [
     {
       "name": "Region_filter",
