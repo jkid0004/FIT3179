@@ -1,0 +1,263 @@
+PC,Suburbs,2008,2009,% Difference,Region
+3000,Melbourne Cbd,308,282,-8%,Inner Melbourne
+3002,East Melbourne,327,305,-7%,Inner Melbourne
+3002,Jolimont,327,305,-7%,Inner Melbourne
+3004,Melbourne,290,278,-4%,Inner Melbourne
+3006,Southbank,271,262,-3%,Inner Melbourne
+3011,Coode Island,412,393,-5%,Western Melbourne 
+3011,Footscray,412,393,-5%,Western Melbourne 
+3011,Footscray West,412,393,-5%,Western Melbourne 
+3011,Seddon,412,393,-5%,Western Melbourne
+3012,Kingsville South (Hobsons Bay),395,377,-5%,Western Melbourne
+3012,Kingsville,395,377,-5%,Western Melbourne
+3012,Maidstone,395,377,-5%,Western Melbourne
+3012,Tottenham,395,377,-5%,Western Melbourne
+3013,Yarraville,385,366,-5%,Western Melbourne
+3015,Newport,403,373,-7%,Western Melbourne
+3015,Newport Lakes,403,373,-7%,Western Melbourne
+3015,Spotswood,403,373,-7%,Western Melbourne
+3015,Kingsville South (Maribyrnong),403,373,-7%,Western Melbourne
+3016,Williamstown,432,402,-7%,Western Melbourne
+3016,Williamstown North,432,402,-7%,Western Melbourne
+3018,Altona,404,373,-8%,Western Melbourne
+3018,Seaholme,404,373,-8%,Western Melbourne
+3019,Braybrook,468,433,-7%,Western Melbourne
+3020,Albion,456,432,-5%,Western Melbourne 
+3020,Sunshine,456,432,-5%,Western Melbourne 
+3020,Sunshine North,456,432,-5%,Western Melbourne 
+3020,Sunshine West",456,432,-5%,Western Melbourne
+3021,Albanvale,494,458,-7%,Western Melbourne
+3021,Kealba,494,458,-7%,Western Melbourne
+3021,Kings Park,494,458,-7%,Western Melbourne
+3021,St Albans,494,458,-7%,Western Melbourne
+3022,Ardeer,438,403,-8%,Western Melbourne
+3023,Cairnlea,469,455,-3%,Western Melbourne
+3023,Deer Park,469,455,-3%,Western Melbourne
+3023,Burnside,469,455,-3%,Western Melbourne
+3023,Caroline Springs,469,455,-3%,Western Melbourne
+3023,Ravenhall,469,455,-3%,Western Melbourne
+3024,Mount Cottrell,456,432,-5%,Western Melbourne
+3024,Wyndham Vale,456,432,-5%,Western Melbourne
+3025,Altona North,471,433,-8%,Western Melbourne
+3025,Brooklyn,471,433,-8%,Western Melbourne
+3028,Altona Meadows,467,441,-6%,Western Melbourne
+3028,Laverton,467,441,-6%,Western Melbourne
+3028,Western Gardens,467,441,-6%,Western Melbourne
+3028,Laverton South,467,441,-6%,Western Melbourne
+3028,Seabrook,467,441,-6%,Western Melbourne
+3029,Hoppers Crossing,495,473,-4%,Western Melbourne
+3029,Tarneit,495,473,-4%,Western Melbourne
+3029,Truganina,495,473,-4%,Western Melbourne
+3030,Derrimut,474,450,-5%,Western Melbourne
+3030,Point Cook,474,450,-5%,Western Melbourne
+3030,Sanctuary Lakes,474,450,-5%,Western Melbourne
+3030,Werribee,474,450,-5%,Western Melbourne
+3030,Werribee South,474,450,-5%,Western Melbourne
+3031,Kensington - Kingsford,362,345,-5%,Inner Melbourne
+3031,Flemington,362,345,-5%,Inner Melbourne
+3031,Newmarket,362,345,-5%,Inner Melbourne
+3032,Ascot Vale,442,416,-6%,Inner Melbourne
+3032,Travancore,442,416,-6%,Inner Melbourne
+3032,Maribyrnong,442,416,-6%,Inner Melbourne
+3033,Keilor East,480,443,-8%,Northern Melbourne
+3034,Avondale Heights,503,463,-8%,Northern Melbourne
+3036,Keilor,590,539,-9%,Northern Melbourne
+3037,Delahey,535,509,-5%,Northern Melbourne
+3037,Keilor North,535,509,-5%,Northern Melbourne
+3037,Sydenham,535,509,-5%,Northern Melbourne
+3037,Hillside,535,509,-5%,Northern Melbourne
+3037,Taylors Hill,535,509,-5%,Northern Melbourne
+3038,Keilor Downs,593,552,-7%,Northern Melbourne
+3038,Keilor Lodge,593,552,-7%,Northern Melbourne
+3038,Taylors Lakes,593,552,-7%,Northern Melbourne
+3039,Moonee Ponds,423,395,-7%,Northern Melbourne
+3040,Essendon - Aberfeldie,451,426,-6%,Northern Melbourne
+3041,Essendon North,468,445,-5%,Northern Melbourne
+3041,Strathmore,468,445,-5%,Northern Melbourne
+3041,Strathmore Heights,468,445,-5%,Northern Melbourne
+3042,Aberfeldie,443,410,-8%,Northern Melbourne
+3042,Airport West,443,410,-8%,Northern Melbourne
+3042,Keilor Park,443,410,-8%,Northern Melbourne
+3042,Niddrie,443,410,-8%,Northern Melbourne
+3043,Gladstone Park,433,410,-5%,Northern Melbourne
+3044,Pascoe Vale,410,393,-4%,Northern Melbourne
+3046,Glenroy,428,414,-3%,Northern Melbourne
+3047,Broadmeadows,524,508,-3%,Northern Melbourne
+3048,Coolaroo,557,535,-4%,Northern Melbourne
+3049,Attwood / Westmeadows,528,498,-6%,Northern Melbourne
+3051,Melbourne North,433,392,-9%,Inner Melbourne
+3051,North Melbourne (Moonee Valley),433,392,-9%,Inner Melbourne
+3052,Parkville,422,393,-7%,Inner Melbourne
+3053,Carlton,339,329,-3%,Inner Melbourne
+3054,Princes Hill,384,367,-4%,Inner Melbourne
+3054,Carlton North,384,367,-4%,Inner Melbourne
+3055,Brunswick West,358,356,-1%,Inner Melbourne
+3056,Brunswick,362,352,-3%,Inner Melbourne
+3057,Brunswick East,359,344,-4%,Inner Melbourne
+3058,Coburg,422,408,-3%,Northern Melbourne
+3059,Greenvale,677,652,-4%,Northern Melbourne
+3060,Fawkner,473,460,-3%,Northern Melbourne
+3061,Campbellfield,544,528,-3%,Northern Melbourne
+3064,Craigieburn / Roxburgh Park / Mickelham,499,482,-3%,Northern Melbourne
+3065,Fitzroy,365,345,-6%,Inner Melbourne
+3066,Collingwood,427,373,-13%,Inner Melbourne
+3067,Abbotsford,356,347,-3%,Inner Melbourne
+3068,"Clifton Hill, Fitzroy North",370,346,-7%,Inner Melbourne
+3070,Northcote / Croxton,382,366,-4%,Northern Melbourne
+3071,Thornbury,367,354,-3%,Northern Melbourne
+3072,Preston / Northland Centre,416,401,-3%,Northern Melbourne
+3073,Reservoir / Keon Park,436,413,-5%,Northern Melbourne
+3074,Thomastown,523,491,-6%,Northern Melbourne
+3075,Lalor,513,483,-6%,Northern Melbourne
+3076,Epping,528,493,-7%,Northern Melbourne
+3078,Alphington / Fairfield,365,341,-6%,Northern Melbourne
+3079,Ivanhoe,453,426,-6%,Northern Melbourne
+3081,Heidelberg West,410,400,-2%,Northern Melbourne
+3082,Mill Park,530,498,-6%,Northern Melbourne
+3083,Bundoora,461,440,-5%,Northern Melbourne
+3084,Banyule / Heidelberg / Rosanna / Viewbank,436,413,-5%,Northern Melbourne
+3085,Macleod,411,389,-5%,Northern Melbourne
+3087,Watsonia,404,385,-5%,Northern Melbourne
+3088,Greensborough,444,422,-5%,Northern Melbourne
+3089,Diamond Creek,511,489,-4%,Northern Melbourne
+3093,Lower Plenty,559,517,-8%,Northern Melbourne
+3094,Montmorency,405,384,-5%,Northern Melbourne
+3095,Eltham,522,495,-5%,Northern Melbourne
+3099,Hurstbridge / Arthurs Creek,504,493,-2%,Northern Melbourne
+3101,Kew,501,481,-4%,Eastern Melbourne
+3102,Kew East,443,422,-5%,Eastern Melbourne
+3103,Balwyn,480,460,-4%,Eastern Melbourne
+3104,Balwyn North,504,474,-6%,Eastern Melbourne
+3105,Bulleen,462,422,-9%,Eastern Melbourne
+3106,Templestowe,619,570,-8%,Eastern Melbourne
+3107,Templestowe Lower,477,443,-7%,Eastern Melbourne
+3108,Doncaster,437,411,-6%,Eastern Melbourne
+3109,Doncaster East,463,430,-7%,Eastern Melbourne
+3111,Donvale,527,484,-8%,Eastern Melbourne
+3113,Warrandyte,594,554,-7%,Eastern Melbourne
+3114,Park Orchards,642,608,-5%,Eastern Melbourne
+3115,Wonga Park,666,627,-6%,Eastern Melbourne
+3116,Chirnside Park,474,445,-6%,Eastern Melbourne
+3121,Richmond (Vic.),365,334,-9%,Inner Melbourne
+3122,Hawthorn,431,413,-4%,Eastern Melbourne
+3123,Hawthorn East,444,426,-4%,Eastern Melbourne
+3124,Camberwell,487,465,-5%,Eastern Melbourne
+3125,Burwood,446,426,-5%,Eastern Melbourne
+3126,Canterbury,581,542,-7%,Eastern Melbourne
+3127,Mont Albert / Surrey Hills,453,429,-5%,Eastern Melbourne
+3128,Box Hill,397,383,-3%,Eastern Melbourne
+3129,Balwyn East,390,370,-5%,Eastern Melbourne
+3130,Blackburn,399,378,-5%,Eastern Melbourne
+3131,Forest Hill / Nunawading,386,363,-6%,Eastern Melbourne
+3132,Mitcham / Heatherdale,371,348,-6%,Eastern Melbourne
+3133,Vermont,448,418,-7%,Eastern Melbourne
+3134,Ringwood,415,392,-5%,Eastern Melbourne
+3135,Heathmont,361,345,-4%,Eastern Melbourne
+3136,Croydon,400,377,-6%,Eastern Melbourne
+3137,Kilsyth,415,388,-6%,Eastern Melbourne
+3138,Mooroolbark,440,413,-6%,Eastern Melbourne
+3139,Yellingbo / Woori Yallock / Seville,478,465,-3%,Eastern Melbourne
+3140,Lilydale,429,402,-6%,Eastern Melbourne
+3141,South Yarra,370,362,-2%,Inner Melbourne
+3142,Toorak,648,631,-3%,Inner Melbourne
+3143,Armadale,439,420,-4%,Inner Melbourne
+3144,Malvern / Kooyong,546,527,-4%,Southern Melbourne
+3145,Caulfield East,467,447,-4%,Southern Melbourne
+3146,Glen Iris,451,430,-5%,Southern Melbourne
+3147,Ashburton,420,407,-3%,Southern Melbourne
+3148,Chadstone,419,407,-3%,Southern Melbourne
+3149,Mount Waverley,419,399,-5%,Southern Melbourne
+3150,Glen Waverley,463,435,-6%,Southern Melbourne
+3151,Burwood East,433,413,-5%,Eastern Melbourne
+3152,Wantirna,490,454,-7%,Eastern Melbourne
+3153,Bayswater,383,359,-6%,Eastern Melbourne
+3154,The Basin,432,404,-7%,Eastern Melbourne
+3155,Boronia,389,364,-6%,Eastern Melbourne
+3156,Lysterfield,445,417,-6%,Eastern Melbourne
+3158,Upwey,405,392,-3%,Eastern Melbourne
+3160,Belgrave,427,404,-5%,Eastern Melbourne
+3161,Caulfield North,535,508,-5%,Southern Melbourne
+3162,Caulfield,467,445,-5%,Southern Melbourne
+3163,Carnegie,376,361,-4%,Southern Melbourne
+3165,Bentleigh East,428,402,-6%,Southern Melbourne
+3166,Hughesdale,423,400,-5%,Southern Melbourne
+3167,Oakleigh South,461,427,-7%,Southern Melbourne
+3168,Clayton,448,436,-3%,Southern Melbourne
+3169,Clarinda,479,447,-7%,Southern Melbourne
+3170,Mulgrave,447,416,-7%,Southern Melbourne
+3171,Springvale,464,435,-6%,Southern Melbourne
+3172,Springvale South,483,444,-8%,Southern Melbourne
+3173,Keysborough,491,457,-7%,Southern Melbourne
+3174,Noble Park,418,390,-7%,Southern Melbourne
+3175,Bangholme,445,416,-7%,Southern Melbourne
+3177,Doveton,429,407,-5%,Southern Melbourne
+3178,Rowville,517,482,-7%,Eastern Melbourne
+3179,Scoresby,458,434,-5%,Eastern Melbourne
+3180,Knoxfield,435,406,-7%,Eastern Melbourne
+3181,Prahran - Windsor,356,343,-4%,Inner Melbourne
+3182,St Kilda,309,296,-4%,Inner Melbourne
+3183,Balaclava,367,353,-4%,Inner Melbourne
+3184,Elwood,317,307,-3%,Bayside Peninsula
+3185,Ripponlea,404,389,-4%,Bayside Peninsula
+3186,Brighton,569,548,-4%,Bayside Peninsula
+3187,Brighton East,494,461,-7%,Bayside Peninsula
+3188,Hampton,455,425,-6%,Bayside Peninsula
+3189,Moorabbin,417,393,-6%,Bayside Peninsula
+3190,Highett,384,359,-6%,Bayside Peninsula
+3191,Sandringham,484,447,-8%,Bayside Peninsula
+3192,Cheltenham,395,372,-6%,Bayside Peninsula
+3193,Beaumaris,503,457,-9%,Bayside Peninsula
+3194,Mentone,378,348,-8%,Bayside Peninsula
+3195,Aspendale,425,400,-6%,Bayside Peninsula
+3196,Bonbeach,376,348,-7%,Bayside Peninsula
+3197,Carrum,409,382,-7%,Bayside Peninsula
+3198,Seaford,395,367,-7%,Bayside Peninsula
+3199,Frankston,435,399,-8%,Bayside Peninsula
+3200,Frankston North,425,393,-7%,Bayside Peninsula
+3201,Carrum Downs,442,414,-6%,Bayside Peninsula
+3204,Bentleigh,428,404,-6%,Southern Melbourne
+3205,South Melbourne,336,327,-2%,Inner Melbourne
+3206,Albert Park,380,364,-4%,Inner Melbourne
+3207,Port Melbourne,335,315,-6%,Inner Melbourne
+3752,South Morang,484,452,-6%,Northern Melbourne
+3754,Mernda / Doreen,415,398,-4%,Northern Melbourne
+3756,Wallan,494,478,-3%,Northern Melbourne
+3757,Whittlesea,444,417,-6%,Northern Melbourne
+3765,Montrose,459,430,-6%,Eastern Melbourne
+3777,Healesville,402,403,0%,Eastern Melbourne
+3781,Cockatoo,443,416,-6%,Eastern Melbourne
+3782,Emerald,453,432,-5%,Eastern Melbourne
+3793,Monbulk,443,396,-11%,Eastern Melbourne
+3796,Mount Evelyn,453,426,-6%,Eastern Melbourne
+3799,Millgrove/Warbuton,363,367,1%,Eastern Melbourne
+3802,Endeavour Hills,518,476,-8%,Southern Melbourne
+3803,Hallam,476,439,-8%,Southern Melbourne
+3804,Narre Warren East,607,565,-7%,Southern Melbourne
+3805,Narre Warren,494,463,-6%,Southern Melbourne
+3806,Berwick,468,436,-7%,Southern Melbourne
+3807,Beaconsfield,509,475,-7%,Southern Melbourne
+3810,Pakenham,413,395,-4%,Southern Melbourne
+3910,Langwarrin,486,451,-7%,Bayside Peninsula
+3911,Baxter,522,468,-10%,Bayside Peninsula
+3912,Pearcedale,507,464,-9%,Bayside Peninsula
+3913,TYABB,501,460,-8%,Bayside Peninsula
+3915,Hastings,412,381,-8%,Bayside Peninsula
+3918,Bittern,483,439,-9%,Bayside Peninsula
+3919,Crib Point,433,397,-8%,Bayside Peninsula
+3926,Balnarring,362,331,-9%,Bayside Peninsula
+3927,Somers,325,301,-7%,Bayside Peninsula
+3930,Mount Eliza,624,549,-12%,Bayside Peninsula
+3931,Mornington,421,385,-9%,Bayside Peninsula
+3934,Mount Martha,480,440,-8%,Bayside Peninsula
+3936,Dromana,316,290,-8%,Bayside Peninsula
+3938,Mccrae,348,318,-9%,Bayside Peninsula
+3939,Rosebud,335,312,-7%,Bayside Peninsula
+3940,Rosebud West,293,269,-8%,Bayside Peninsula
+3941,Rye,283,260,-8%,Bayside Peninsula
+3942,Blairgowrie,255,234,-8%,Bayside Peninsula
+3943,Sorrento,322,292,-9%,Bayside Peninsula
+3944,Portsea,449,403,-10%,Bayside Peninsula
+3975,Lynbrook,456,420,-8%,Southern Melbourne
+3976,Hampton Park,481,453,-6%,Southern Melbourne
+3977,Cranbourne,444,414,-7%,Southern Melbourne
+3980,"BLIND BIGHT , TOORADIN , WARNEET",452,408,-10%,Southern Melbourne

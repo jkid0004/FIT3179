@@ -1,0 +1,72 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": "Water vs Electricity Consumption in Melbourne Suburbs by Region",
+  "data": {
+    "url": "data/wateruse.csv"
+  },
+  "transform": [
+    {
+      "lookup": "Suburbs",
+      "from": {
+        "data": {"url": "data/supplied-sa2s.csv"},
+        "key": "sa2_name",
+        "fields": ["Mean - 2010 (kWh)"]
+      }
+    },
+    {"filter": "datum['Mean - 2010 (kWh)'] != null && datum['Mean - 2010 (kWh)'] > 0"},
+    {"filter": "datum['2009'] != null && datum['2009'] > 0"},
+    {"filter": "Region_filter == null || datum.Region == Region_filter"}
+  ],
+  "width": 600,
+  "height": 400,
+  "mark": {"type": "point", "filled": true},
+  "encoding": {
+    "x": {
+      "field": "2009",
+      "type": "quantitative",
+      "title": "Water Consumption (L/household/day)",
+      "scale": {"domain": [200, 650]}
+    },
+    "y": {
+      "field": "Mean - 2010 (kWh)",
+      "type": "quantitative",
+      "title": "Electricity Consumption (kWh/year)",
+      "scale": {"domain": [2000, 12000]}
+    },
+    "color": {
+      "field": "Region",
+      "type": "nominal",
+      "scale": {
+        "scheme": "category10",
+        "domain": [
+          "Inner Melbourne",
+          "Western Melbourne",
+          "Northern Melbourne",
+          "Eastern Melbourne",
+          "Southern Melbourne",
+          "Bayside Peninsula"
+        ]
+      },
+      "legend": {"title": "Region"}
+    },
+    "tooltip": [
+      {"field": "Suburbs", "type": "nominal", "title": "Suburb"},
+      {"field": "PC", "type": "nominal", "title": "Postal Code"},
+      {"field": "Region", "type": "nominal", "title": "Region"},
+      {"field": "2009", "type": "quantitative", "title": "Water Consumption 2009 (L/household/day)"},
+      {"field": "Mean - 2010 (kWh)", "type": "quantitative", "title": "Electricity Consumption 2010 (kWh/year)"}
+    ]
+  },
+  "params": [
+    {
+      "name": "Region_filter",
+      "value": null,
+      "bind": {
+        "input": "select",
+        "options": [null, "Inner Melbourne", "Western Melbourne", "Northern Melbourne", "Eastern Melbourne", "Southern Melbourne", "Bayside Peninsula"],
+        "labels": ["All", "Inner Melbourne", "Western Melbourne", "Northern Melbourne", "Eastern Melbourne", "Southern Melbourne", "Bayside Peninsula"],
+        "name": "Region Selection: "
+      }
+    }
+  ]
+}
