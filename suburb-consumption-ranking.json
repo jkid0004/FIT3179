@@ -1,0 +1,97 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 400,
+  "height": 800,
+  "data": {
+    "url": "data/wateruse.csv"
+  },
+  "transform": [
+    {
+      "lookup": "Suburbs",
+      "from": {
+        "data": {"url": "data/supplied-sa2s.csv"},
+        "key": "sa2_name",
+        "fields": ["Mean - 2010 (kWh)"]
+      }
+    },
+    {"filter": "datum['Mean - 2010 (kWh)'] != null && datum['Mean - 2010 (kWh)'] > 0"},
+    {"filter": "datum['2009'] != null && datum['2009'] > 0"},
+    {
+      "window": [{"op": "rank", "as": "rank"}],
+      "sort": [
+        {
+          "field": {"expr": "sortField == 'water' ? '2009' : 'Mean - 2010 (kWh)'"},
+          "order": "descending"
+        }
+      ]
+    }
+  ],
+  "params": [
+    {
+      "name": "sortField",
+      "value": "water",
+      "bind": {
+        "input": "select",
+        "options": ["water", "electricity"],
+        "labels": ["Water Consumption", "Electricity Consumption"],
+        "name": "Sort by: "
+      }
+    }
+  ],
+  "layer": [
+    {
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "baseline": "middle",
+        "dx": 5
+      },
+      "encoding": {
+        "y": {"field": "rank", "type": "ordinal", "axis": null},
+        "text": {"field": "Suburbs", "type": "nominal"},
+        "color": {
+          "field": "Region",
+          "type": "nominal",
+          "scale": {"scheme": "category10"},
+          "legend": {"title": "Region"}
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "baseline": "middle",
+        "dx": 5,
+        "dy": 20,
+        "fontSize": 10
+      },
+      "encoding": {
+        "y": {"field": "rank", "type": "ordinal"},
+        "text": {
+          "field": "2009",
+          "type": "quantitative",
+          "format": ".0f"
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "baseline": "middle",
+        "dx": 5,
+        "dy": 35,
+        "fontSize": 10
+      },
+      "encoding": {
+        "y": {"field": "rank", "type": "ordinal"},
+        "text": {
+          "field": "Mean - 2010 (kWh)",
+          "type": "quantitative",
+          "format": ".0f"
+        }
+      }
+    }
+  ]
+}

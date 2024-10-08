@@ -1,0 +1,68 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "title": "Detailed Melbourne Greenhouse Gas Emissions Over Time",
+    "data": {
+      "url": "data/city-of-melbourne-municipal-greenhouse-gas-emissions-2013-2020.csv"
+    },
+    "width": 800,
+    "height": 500,
+    "mark": "line",
+    "encoding": {
+      "x": {"field": "year", "type": "temporal", "title": "Year"},
+      "y": {
+        "field": "emissions",
+        "type": "quantitative",
+        "title": "Emissions (tCO2e)",
+        "scale": {"type": "log"}
+      },
+      "color": {
+        "field": "category",
+        "type": "nominal",
+        "title": "Emission Category",
+        "scale": {
+          "domain": [
+            "Residential Scope 1",
+            "Residential Scope 2",
+            "Residential Scope 3",
+            "Commercial Scope 1",
+            "Commercial Scope 2",
+            "Commercial Scope 3",
+            "Manufacturing Scope 1",
+            "Manufacturing Scope 2",
+            "Manufacturing Scope 3"
+          ],
+          "scheme": "category10"
+        }
+      },
+      "tooltip": [
+        {"field": "year", "type": "temporal", "title": "Year"},
+        {"field": "category", "type": "nominal", "title": "Category"},
+        {"field": "emissions", "type": "quantitative", "title": "Emissions (tCO2e)", "format": ",.0f"}
+      ]
+    },
+    "transform": [
+      {"calculate": "datum.residential_buildings_scope_1", "as": "Residential Scope 1"},
+      {"calculate": "datum.residential_buildings_scope_2", "as": "Residential Scope 2"},
+      {"calculate": "datum.residential_buildings_scope_3", "as": "Residential Scope 3"},
+      {"calculate": "datum.commercial_and_institutional_buildings_and_facilities_scope_1", "as": "Commercial Scope 1"},
+      {"calculate": "datum.commercial_and_institutional_buildings_and_facilities_scope_2", "as": "Commercial Scope 2"},
+      {"calculate": "datum.commercial_and_institutional_buildings_and_facilities_scope_3", "as": "Commercial Scope 3"},
+      {"calculate": "datum.manufacturing_industries_and_construction_scope_1", "as": "Manufacturing Scope 1"},
+      {"calculate": "datum.manufacturing_industries_and_construction_scope_2", "as": "Manufacturing Scope 2"},
+      {"calculate": "datum.manufacturing_industries_and_construction_scope_3", "as": "Manufacturing Scope 3"},
+      {
+        "fold": [
+          "Residential Scope 1",
+          "Residential Scope 2",
+          "Residential Scope 3",
+          "Commercial Scope 1",
+          "Commercial Scope 2",
+          "Commercial Scope 3",
+          "Manufacturing Scope 1",
+          "Manufacturing Scope 2",
+          "Manufacturing Scope 3"
+        ],
+        "as": ["category", "emissions"]
+      }
+    ]
+  }
