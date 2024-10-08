@@ -65,17 +65,8 @@
   "layer": [
     {
       "mark": {
-        "type": "rect",
-        "fill": "blue",
-        "opacity": 0.1,
-        "stroke": null
-      },
-      "encoding": {
-        "x": {"value": 0},
-        "x2": {"value": 800},
-        "y": {"value": 0},
-        "y2": {"value": 400}
-      }
+        "type": "geoshape", "fill": "skyblue", "opacity": 0.1, "stroke": null}, 
+        "data": {"values": [{"type": "Sphere"}]}   
     },
     {
       "data": {
