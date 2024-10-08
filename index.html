@@ -3,63 +3,118 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Victoria's Sustainability Journey: Monitoring Resource Consumption</title>
-    <link rel="stylesheet" href="styles.css">
-    <!-- Vega and Vega-Lite libraries -->
-    <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+    <title>Victoria Water and Electricity Consumption Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/vega@5.20.2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.1.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.17.0"></script>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: Arial, sans-serif;
+        }
+        .dashboard {
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+        }
+        h1 {
+            text-align: center;
+            padding: 10px;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+        .visualization-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            padding: 10px;
+        }
+        .full-width {
+            flex: 2;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: center; /* This centers the top visualization */
+        }
+        .row {
+            flex: 1;
+            display: flex;
+        }
+        .col {
+            flex: 1;
+            margin: 0 5px;
+        }
+        .visualization {
+            height: 100%;
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            padding: 10px;
+            box-sizing: border-box;
+            overflow: auto;
+        }
+        .top-visualization {
+            width: 100%; /* Ensures the visualization takes full width of its container */
+        }
+        h2 {
+            margin-top: 0;
+            color: #333;
+        }
+        .explanation {
+            font-size: 12px;
+            color: #666;
+            margin-top: 10px;
+        }
+        #vis2, #vis1 {
+            height: calc(100% - 80px);
+        }
+    </style>
 </head>
 <body>
-    <header>
-        <h1><img src="icons/icons8-victoria-australia-gradient-96.png" alt="World icon"> Victoria's Sustainability Journey: Monitoring Resource Consumption</h1>
-        <button class="menu-toggle">≡</button>
-    </header>
-    
     <div class="dashboard">
-        <aside class="consumption-list">
-            <div class="highest-consumption">
-                <h3>Highest Electricity Consumption by Suburb</h3>
-                <br>
-                <ul id="highest-electricity">
-                    <!-- This will be populated dynamically -->
-                </ul>
-                <h3>Highest Water Consumption by Suburb</h3>
-                <br>
-                <ul id="highest-water">
-                    <!-- This will be populated dynamically -->
-                </ul>
-            </div>
-        </aside>
+        <h1>Victoria Water and Electricity Consumption Dashboard</h1>
         
-        <main>
-            <div class="visualization-container">
-                <div class="full-width">
-                    <div class="visualization top-visualization">
-                        <h2>Victoria Energy Consumption, Production and Facilities by SA2 (2012)</h2>
-                        <div id="vis2"></div>
-                        <div class="explanation">
-                            The visualisation clearly shows how the different regions of Victoria produce and consume power for the rest of the state. You can additionally observe how the different facilities in Victoria produce and provide power to each other.
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="row">
-                    <div class="col">
-                        <div class="visualization">
-                            <h2>Water vs Electricity Consumption in Melbourne Suburbs by Region</h2>
-                            <div id="vis1"></div>
-                            <div class="explanation">
-                                By comparing the different Melbourne suburbs by region, you can see a clear divide between the regions alongside how the suburbs' water and electricity consumption completely contrast depending on their situation in Melbourne. Inner Melbourne has the highest energy consumption whilst Northern Melbourne has the highest water consumption.
-                            </div>
-                        </div>
+        <div class="visualization-container">
+            <div class="full-width">
+                <div class="visualization top-visualization">
+                    <h2>Victoria Energy Consumption, Production and Facilities by SA2 (2012)</h2>
+                    <div id="vis2"></div>
+                    <div class="explanation">
+                        The visualisation clearly shows how the different regions of Victoria
+                        produce and consume power for the rest of the state. You can additionally
+                        observe how the different facilities in Victoria produce and provide
+                        power to each other.
                     </div>
                 </div>
             </div>
-        </main>
+
+            <div class="row">
+                <div class="col">
+                    <div class="visualization">
+                        <h2>Water vs Electricity Consumption in Melbourne Suburbs by Region</h2>
+                        <div id="vis1"></div>
+                        <div class="explanation">
+                            By comparing the different Melbourne suburbs by region, you can see a
+                            clear divide between the regions alongside how the suburbs' water and
+                            electricity consumption completely contrast depending on their situation in
+                            Melbourne. Inner Melbourne has the highest energy consumption whilst
+                            Northern Melbourne has the highest water consumption.
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="visualization">
+                        <h2>Empty Container</h2>
+                        <p>This container is currently empty and can be used for future content or visualizations.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <!-- Your custom script -->
-    <script src="script.js"></script>
+    <script>
+        vegaEmbed('#vis2', 'energy_consumption_map.vg.json', {"actions": false});
+        vegaEmbed('#vis1', 'vic-consumption-water-elec.json', {"actions": false});
+    </script>
 </body>
 </html>
