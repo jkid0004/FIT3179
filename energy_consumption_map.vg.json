@@ -65,7 +65,7 @@
   "layer": [
     {
       "mark": {
-        "type": "geoshape", "fill": "skyblue", "opacity": 0.1, "stroke": null}, 
+        "type": "geoshape", "fill": "blue", "opacity": 0.1, "stroke": null}, 
         "data": {"values": [{"type": "Sphere"}]}   
     },
     {
@@ -85,7 +85,7 @@
         "type": "geoshape",
         "fill": "lightgrey",
         "stroke": "white",
-        "strokeWidth": 0.5
+        "strokeWidth": 0.2
       },
       "encoding": {
         "tooltip": [
@@ -110,7 +110,7 @@
         "type": "geoshape",
         "fill": "lightgrey",
         "stroke": "white",
-        "strokeWidth": 0.5
+        "strokeWidth": 0.2
       },
       "encoding": {
         "tooltip": [
@@ -161,7 +161,7 @@
       "mark": {
         "type": "geoshape",
         "stroke": "white",
-        "strokeWidth": 0.05
+        "strokeWidth": 0.2
       },
       "encoding": {
         "color": {
