@@ -1,0 +1,61 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "data": {"url": "../data/generated-sa2s.csv"},
+    "transform": [
+      {
+        "calculate": "toString(datum.sa2_code_2011)",
+        "as": "sa2_code_2011_str"
+      },
+      {
+        "lookup": "sa2_code_2011_str",
+        "from": {
+          "data": {
+            "url": "../data/population-sa2s.csv"
+          },
+          "key": "sa2_code_2011",
+          "fields": ["persons/km2"]
+        }
+      },
+      {
+        "filter": "datum['persons/km2'] > 0"
+      },
+      {
+        "window": [{"op": "rank", "as": "rank"}],
+        "sort": [{"field": "persons/km2", "order": "descending"}]
+      },
+      {
+        "filter": "datum.rank <= 10"
+      },
+      {
+        "fold": ["Mean - 2010 (kWh)", "Mean - 2011 (kWh)", "Mean - 2012 (kWh)"], 
+        "as": ["Year", "Consumption"]
+      },
+      {
+        "calculate": "replace(datum.Year, 'Mean - ', '')",
+        "as": "Year"
+      },
+      {
+        "calculate": "replace(datum.Year, ' (kWh)', '')",
+        "as": "Year"
+      }
+    ],
+    "mark": {
+      "type": "line",
+      "tooltip": true
+    },
+    "encoding": {
+      "x": {"field": "Year", "type": "ordinal", "title": "Year"},
+      "y": {"field": "Consumption", "type": "quantitative", "title": "Energy Consumption (kWh)"},
+      "color": {"field": "sa2_name", "type": "nominal", "title": "SA2 Area"},
+      "tooltip": [
+        {"field": "Year", "type": "ordinal"},
+        {"field": "sa2_name", "type": "nominal", "title": "SA2 Area"},
+        {"field": "Consumption", "type": "quantitative", "title": "Energy Consumption (kWh)"},
+        {"field": "persons/km2", "type": "quantitative", "title": "Population per km2 (2023)"}
+      ]
+    },
+    "width": 500,
+    "height": 300,
+    "title": "Energy Consumption Comparison (2010-2012) for Top 10 SA2 Areas by Population Density"
+  }
+  

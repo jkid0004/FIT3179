@@ -21,45 +21,78 @@
             <div class="highest-consumption">
                 <h3>Highest Electricity Consumption by Suburb</h3>
                 <br>
-                <ul id="highest-electricity">
-                    <!-- This will be populated dynamically -->
-                </ul>
+                <ul id="highest-electricity"></ul>
                 <h3>Highest Water Consumption by Suburb</h3>
                 <br>
-                <ul id="highest-water">
-                    <!-- This will be populated dynamically -->
-                </ul>
+                <ul id="highest-water"></ul>
             </div>
         </aside>
         
         <main>
             <div class="visualization-container">
-                <div class="full-width">
-                    <div class="visualization top-visualization">
-                        <h2>Victoria Energy Consumption, Production and Facilities by SA2 (2012)</h2>
-                        <div id="vis2"></div>
-                        <div class="explanation">
-                            The visualisation clearly shows how the different regions of Victoria produce and consume power for the rest of the state. You can additionally observe how the different facilities in Victoria produce and provide power to each other.
-                        </div>
-                    </div>
+              <div class="story-intro">
+                <div class="intro-text">
+                  <h2>Victoria's Resource Management Story</h2>
+                  <p>Welcome to our interactive dashboard exploring Victoria's journey towards sustainable resource management. This visualization tool provides insights into the state's electricity and water consumption patterns across various suburbs and regions.</p>
+                  <p>By analyzing this data, we can identify areas of high consumption, track progress in conservation efforts, and make informed decisions for a more sustainable future. Explore the visualizations below to discover how different regions compare in their resource usage and learn about the factors influencing these patterns.</p>
                 </div>
-                
-                <div class="row">
+                <div class="intro-image">
+                  <img src="/icons/sustainability_image.jpeg" alt="Victoria sustainability image">
+                </div>
+              </div>
+        
+              <div class="story-intro">
+                <div class="intro-text">
+                  <h2>Victoria Energy Consumption, Production and Facilities by SA2 (2012)</h2>
+                  <div id="vis_map"></div>
+                  <div class="explanation">
+                    <p>The visualisation clearly shows how the different regions of Victoria produce and consume power for the rest of the state. You can additionally observe how the different facilities in Victoria produce and provide power to each other.</p>
+                  </div>
+                </div>
+              </div>
+        
+              <div class="story-intro">
+                <div class="intro-text">
+                  <h2>Water vs Electricity Consumption in Melbourne Suburbs by Region</h2>
+                  <div id="vis_water_elec"></div>
+                  <div class="explanation">
+                    <p>By comparing the different Melbourne suburbs by region, you can see a clear divide between the regions alongside how the suburbs' water and electricity consumption completely contrast depending on their situation in Melbourne. Inner Melbourne has the highest energy consumption whilst Northern Melbourne has the highest water consumption.</p>
+                  </div>
+                </div>
+              </div>
+
+              <section class="story-intro">
+                <div class="intro-text">
+                  <h2>Population Density vs Energy Consumption Comparison</h2>
+                  <div class="row">
                     <div class="col">
-                        <div class="visualization">
-                            <h2>Water vs Electricity Consumption in Melbourne Suburbs by Region</h2>
-                            <div id="vis1"></div>
-                            <div class="explanation">
-                                By comparing the different Melbourne suburbs by region, you can see a clear divide between the regions alongside how the suburbs' water and electricity consumption completely contrast depending on their situation in Melbourne. Inner Melbourne has the highest energy consumption whilst Northern Melbourne has the highest water consumption.
-                            </div>
-                        </div>
+                      <div id="vis_pop_eng"></div>
+                      <div class="explanation">
+                        <p>By comparing the different Melbourne suburbs by region, you can see a
+                        clear divide between the regions alongside how the suburbs' water and
+                        electricity consumption completely contrast depending on their situation
+                        in Melbourne. Inner Melbourne has the highest energy consumption whilst
+                        Northern Melbourne has the highest water consumption.</p>
+                      </div>
                     </div>
+                    <div class="col">
+                      <div id="vis_pop_eng"></div>
+                      <div class="explanation">
+                        <p>By comparing the different Melbourne suburbs by region, you can see a
+                        clear divide between the regions alongside how the suburbs' water and
+                        electricity consumption completely contrast depending on their situation
+                        in Melbourne. Inner Melbourne has the highest energy consumption whilst
+                        Northern Melbourne has the highest water consumption.</p>
+                      </div>
+                    </div>
+                  </div>
                 </div>
+              </section>
+
             </div>
-        </main>
+          </main>
     </div>
 
-    <!-- Your custom script -->
     <script src="script.js"></script>
 </body>
 </html>

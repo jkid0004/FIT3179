@@ -65,16 +65,20 @@ async function loadCSVData(url) {
 async function loadVisualizations() {
     try {
         // Load the Victoria Energy Consumption map
-        await vegaEmbed('#vis2', 'energy_consumption_map.vg.json');
-        console.log('Vis2 loaded successfully');
+        await vegaEmbed('#vis_map', 'graphs/energy_consumption_map.vg.json');
+        console.log('vis_map loaded successfully');
 
         // Load the Water vs Electricity Consumption data
         const waterData = await loadCSVData('data/wateruse.csv');
         const electricityData = await loadCSVData('data/supplied-sa2s.csv');
         
         // Render the Water vs Electricity Consumption scatter plot
-        await vegaEmbed('#vis1', 'vic-consumption-water-elec.json');
-        console.log('Vis1 loaded successfully');
+        await vegaEmbed('#vis_water_elec', 'graphs/vic-consumption-water-elec.json');
+        console.log('vis_water_elec loaded successfully');
+
+        // Load the Victoria Energy Consumption map
+        await vegaEmbed('#vis_pop_eng', 'graphs/population-density-energy-comparison.vg.json');
+        console.log('vis_pop_eng loaded successfully');
 
         // Update the highest consumption lists
         updateHighestConsumption(waterData, electricityData);
