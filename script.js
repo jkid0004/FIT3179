@@ -79,17 +79,18 @@ async function loadVisualizations() {
         // Load the Victoria Energy Consumption map
         await vegaEmbed('#vis_pop_eng', 'graphs/population-density-energy-comparison.vg.json');
         console.log('vis_pop_eng loaded successfully');
-
-        vegaEmbed('#vis_pop_eng_1', 'graphs/population-density-energy-comparison.vg.json');
-        vegaEmbed('#vis_pop_eng_2', 'graphs/population-density-energy-comparison.vg.json');
-
+        
         // Load the Solar Panel info
         await vegaEmbed('#vis_solar', 'graphs/sa4_solar_installations.vg.json');
         console.log('vis_solar loaded successfully');
         
-        // Load the Solar Panel info
+        // Load the vis_irrigation
         await vegaEmbed('#vis_irrigation', 'graphs/water_irrigation.vg.json');
         console.log('vis_irrigation loaded successfully');
+
+        // Load the vis_solar_wind
+        await vegaEmbed('#vis_renewable_enegy_solwin', 'graphs/renewable_enegy_solwin.json');
+        console.log('vis_solar_wind loaded successfully');
 
         // Update the highest consumption lists
         updateHighestConsumption(waterData, electricityData);
@@ -98,15 +99,72 @@ async function loadVisualizations() {
     }
 }
 
-// Add event listener for the menu toggle button
+// Function to handle sidebar content switching
+function handleSidebarContent() {
+    const sidebar = document.querySelector('.sidebar');
+    const highestConsumption = document.querySelector('.highest-consumption');
+    const populationStats = document.querySelector('.population-stats');
+    const waterConsumption = document.querySelector('.water-consumption');
+    
+    // Set initial active content
+    setActiveContent(highestConsumption);
+    
+    // Define the sections and their corresponding sidebar contents
+    const sections = [
+        { element: document.querySelector('h2:contains("Victoria\'s Consumption of Electricity")'), content: highestConsumption },
+        { element: document.querySelector('h2:contains("Population Density vs Energy Consumption and Generation Comparison (2023)")'), content: populationStats },
+        { element: document.querySelector('h2:contains("Water Consumption throughout Victoria")'), content: waterConsumption }
+    ];
+    
+    window.addEventListener('scroll', () => {
+        const scrollPosition = window.scrollY + window.innerHeight / 3; // Adjust this value to change when the switch happens
+        
+        for (let i = sections.length - 1; i >= 0; i--) {
+            if (sections[i].element && scrollPosition > sections[i].element.offsetTop) {
+                setActiveContent(sections[i].content);
+                break;
+            }
+        }
+    });
+}
+
+function setActiveContent(activeElement) {
+    const contents = document.querySelectorAll('.sidebar-content');
+    contents.forEach(content => {
+        content.classList.remove('active');
+        content.style.display = 'none';
+    });
+    activeElement.classList.add('active');
+    activeElement.style.display = 'block';
+}
+
+// Function to find elements by text content
+function getElementByText(selector, text) {
+    return Array.from(document.querySelectorAll(selector)).find(
+        element => element.textContent.includes(text)
+    );
+}
+
+// Load visualizations and update consumption lists
 document.addEventListener('DOMContentLoaded', (event) => {
     const menuToggle = document.querySelector('.menu-toggle');
-    const cityList = document.querySelector('.city-list');
+    const sidebar = document.querySelector('.sidebar');
 
     menuToggle.addEventListener('click', () => {
-        cityList.classList.toggle('show');
+        sidebar.classList.toggle('show');
     });
 
-    // Load visualizations and update consumption lists
-    loadVisualizations();
+    loadVisualizations().then(() => {
+        handleSidebarContent();
+        
+        // Trigger a scroll event to set the correct initial state
+        window.dispatchEvent(new Event('scroll'));
+    });
+
+    // Handle window resize
+    window.addEventListener('resize', () => {
+        if (window.innerWidth > 768) {
+            sidebar.classList.remove('show');
+        }
+    });
 });

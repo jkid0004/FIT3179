@@ -1,0 +1,151 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "config": {"view": {"stroke": null}},
+  "vconcat": [
+    {
+      "title": "Victoria Energy Consumption by Source (2008-2022)",
+      "width": 600,
+      "height": 400,
+      "data": {
+        "url": "../data/victoria_energy.csv"
+      },
+      "transform": [
+        {
+          "fold": ["Coal", "Oil", "Gas", "Renewables"],
+          "as": ["Energy Source", "Consumption"]
+        }
+      ],
+      "mark": {
+        "type": "area",
+        "line": {"color": "white"},
+        "interpolate": "monotone"
+      },
+      "encoding": {
+        "x": {
+          "field": "Year",
+          "type": "ordinal",
+          "title": "Year"
+        },
+        "y": {
+          "field": "Consumption",
+          "type": "quantitative",
+          "title": "Energy Consumption (PJ)",
+          "stack": "zero"
+        },
+        "color": {
+          "field": "Energy Source",
+          "type": "nominal",
+          "scale": {
+            "domain": ["Coal", "Oil", "Gas", "Renewables"],
+            "range": ["#0077be", "#0077be", "#0077be", "#ff800f"]
+          }
+        },
+        "tooltip": [
+          {"field": "Year", "type": "ordinal"},
+          {"field": "Energy Source", "type": "nominal"},
+          {"field": "Consumption", "type": "quantitative", "format": ".1f", "title": "Energy (PJ)"}
+        ]
+      }
+    },
+    {
+      "title": "Victoria Solar and Wind Farm Locations",
+      "width": 600,
+      "height": 400,
+      "projection": {
+        "type": "identity",
+        "reflectY": true
+      },
+      "layer": [
+        {
+          "data": {
+            "url": "../data/SA2_2021_Victoria.topojson",
+            "format": {
+              "type": "topojson",
+              "feature": "SA2_2021_Victoria_filtered"
+            }
+          },
+          "transform": [
+            {
+              "filter": "datum.properties.STE_NAME21 === 'Victoria'"
+            }
+          ],
+          "mark": {
+            "type": "geoshape",
+            "fill": "lightgrey",
+            "stroke": "white",
+            "strokeWidth": 0.2
+          },
+          "encoding": {
+            "tooltip": [
+              {"field": "properties.SA2_NAME21", "type": "nominal", "title": "SA2 Name"}
+            ]
+          }
+        },
+        {
+          "data": {
+            "url": "../data/wind_map.json",
+            "format": {
+              "type": "json",
+              "property": "features"
+            }
+          },
+          "mark": {
+            "type": "geoshape",
+            "fill": "blue",
+            "stroke": "blue",
+            "strokeWidth": 1,
+            "opacity": 1
+          },
+          "encoding": {
+            "x": {
+              "field": "geometry.coordinates[0][0][0]",
+              "type": "quantitative"
+            },
+            "y": {
+              "field": "geometry.coordinates[0][0][1]",
+              "type": "quantitative"
+            },
+            "tooltip": [
+              {"field": "properties.NAME", "type": "nominal", "title": "Wind Farm"},
+              {"field": "properties.LOCATION", "type": "nominal", "title": "Location"},
+              {"field": "properties.LGA", "type": "nominal", "title": "LGA"},
+              {"field": "properties.APPROVAL_S", "type": "nominal", "title": "Status"}
+            ]
+          }
+        },
+        {
+          "data": {
+            "url": "../data/solar_map.json",
+            "format": {
+              "type": "json",
+              "property": "features"
+            }
+          },
+          "mark": {
+            "type": "geoshape",
+            "fill": "red",
+            "stroke": "red",
+            "strokeWidth": 3,
+            "opacity": 1
+          },
+          "encoding": {
+            "x": {
+              "field": "geometry.coordinates[0][0][0]",
+              "type": "quantitative"
+            },
+            "y": {
+              "field": "geometry.coordinates[0][0][1]",
+              "type": "quantitative"
+            },
+            "tooltip": [
+              {"field": "properties.NAME", "type": "nominal", "title": "Solar Farm"},
+              {"field": "properties.LOCATION", "type": "nominal", "title": "Location"},
+              {"field": "properties.LGA", "type": "nominal", "title": "LGA"},
+              {"field": "properties.APPROVAL_S", "type": "nominal", "title": "Status"}
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

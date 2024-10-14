@@ -42,48 +42,27 @@ h1 img {
 
 .dashboard {
     display: flex;
-    height: calc(100% - 50px);
+    height: calc(100% - 80px);
 }
 
-.consumption-list {
+.sidebar {
     width: 250px;
     background-color: #f0f0f0;
     overflow-y: auto;
     padding: 20px;
+    box-shadow: 2px 0 5px rgba(0,0,0,0.1);
 }
 
-.search-box input {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 20px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
+.sidebar.show {
+    transform: translateX(0);
 }
 
-.consumption-list ul {
-    list-style-type: none;
-    padding: 0;
+.sidebar-content {
+    display: none;
 }
 
-.consumption-list h3 {
-    margin: 0;
-    color: #0077be;
-}
-
-.consumption-list ul ul {
-    padding-left: 20px;
-}
-
-.highest-consumption {
-    margin-top: 20px;
-}
-
-.highest-consumption h4 {
-    margin-bottom: 5px;
-}
-
-.highest-consumption ul {
-    margin-top: 0;
+.sidebar-content.active {
+    display: block;
 }
 
 main {
@@ -117,7 +96,7 @@ main {
     margin-bottom: 30px;
 }
 
-#vis_map, #vis_water_elec, #vis_pop_eng, #vis_solar, #vis_irrigation {
+#vis_map, #vis_water_elec, #vis_pop_eng, #vis_solar, #vis_irrigation, #vis_renewable_enegy_solwin {
     width: 100%;
     height: 500px;
     background-color: #f9f9f9;
@@ -129,6 +108,10 @@ main {
 
 #vis_map, #vis_solar, #vis_pop_eng, #vis_irrigation {
     height: 600px;
+}
+
+#vis_renewable_enegy_solwin {
+    height: 950px;
 }
 
 #vis_pop_eng {
@@ -253,6 +236,16 @@ h2 {
 }
 
 @media (max-width: 768px) {
+    .sidebar {
+        width: 100%;
+        height: auto;
+        display: none;
+    }
+
+    .sidebar.show {
+        transform: translateY(0);
+    }
+
     .graph_box {
         flex-direction: column;
         

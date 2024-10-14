@@ -37,7 +37,7 @@
       }
     },
     {
-      "mark": {"type": "point", "color": "#0077be"},
+      "mark": {"type": "point", "color": "#0077be", "tooltip": true},
       "encoding": {
         "x": {"field": "Year", "type": "ordinal"},
         "y": {"field": "Installations", "type": "quantitative", "scale": {"domain": [0, 15000]}},
