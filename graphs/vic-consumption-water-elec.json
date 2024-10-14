@@ -1,5 +1,6 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "background": "#f9f9f9",
   "data": {
     "url": "../data/wateruse.csv"
   },
@@ -38,16 +39,16 @@
           "field": "Region",
           "type": "nominal",
           "scale": {
-            "scheme": "category10",
-            "domain": [
-              "Inner Melbourne",
-              "Western Melbourne",
-              "Northern Melbourne",
-              "Eastern Melbourne",
-              "Southern Melbourne",
-              "Bayside Peninsula"
-            ]
-          },
+              "domain": [
+                "Inner Melbourne",
+                "Western Melbourne",
+                "Northern Melbourne",
+                "Eastern Melbourne",
+                "Southern Melbourne",
+                "Bayside Peninsula"
+              ],
+              "range": ["#0bb4ff", "#50e991", "#e60049", "#9b19f5", "#ffa300", "#dc0ab4"]
+            },
           "legend": {"title": "Region"}
         },
         "tooltip": [

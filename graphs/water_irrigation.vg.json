@@ -3,6 +3,7 @@
     "width": 600,
     "height": 400,
     "data": {"url": "../data/SA4_Vic_LandData.csv"},
+    "background": "#f9f9f9",
     "transform": [
       {
         "calculate": "isValid(datum['Volume of water applied to irrigated agricultural land (ML)']) ? parseFloat(datum['Volume of water applied to irrigated agricultural land (ML)']) : 0",

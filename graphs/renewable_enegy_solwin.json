@@ -1,6 +1,7 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "config": {"view": {"stroke": null}},
+  "background": "#f9f9f9",
   "vconcat": [
     {
       "title": "Victoria Energy Consumption by Source (2008-2022)",
@@ -58,7 +59,7 @@
       "layer": [
         {
           "data": {
-            "url": "../data/SA2_2021_Victoria.topojson",
+            "url": "../data/geo_data/SA2_2021_Victoria.topojson",
             "format": {
               "type": "topojson",
               "feature": "SA2_2021_Victoria_filtered"
@@ -83,7 +84,7 @@
         },
         {
           "data": {
-            "url": "../data/wind_map.json",
+            "url": "../data/geo_data/wind_map.json",
             "format": {
               "type": "json",
               "property": "features"
@@ -91,8 +92,8 @@
           },
           "mark": {
             "type": "geoshape",
-            "fill": "blue",
-            "stroke": "blue",
+            "fill": "#ff800f",
+            "stroke": "#ff800f",
             "strokeWidth": 1,
             "opacity": 1
           },
@@ -115,7 +116,7 @@
         },
         {
           "data": {
-            "url": "../data/solar_map.json",
+            "url": "../data/geo_data/solar_map.json",
             "format": {
               "type": "json",
               "property": "features"
@@ -123,8 +124,8 @@
           },
           "mark": {
             "type": "geoshape",
-            "fill": "red",
-            "stroke": "red",
+            "fill": "#0077be",
+            "stroke": "#0077be",
             "strokeWidth": 3,
             "opacity": 1
           },

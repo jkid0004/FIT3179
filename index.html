@@ -3,160 +3,173 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Victoria's Resource Consumption - A Comparison between Statistical Areas</title>
+    <title>Victoria's Resource Consumption - Comparing usage through Region</title>
     <link rel="stylesheet" href="styles.css">
     <!-- Vega and Vega-Lite libraries -->
     <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
     <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
     <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
     <script src="script.js"></script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap" rel="stylesheet">
+
 </head>
 <body>
-    <header>
-        <h1><img src="icons/icons8-victoria-australia-gradient-96.png" alt="World icon"> Victoria's Resource Consumption - A Comparison between Statistical Areas</h1>
-        <button class="menu-toggle">≡</button>
-    </header>
-    
-    <div class="dashboard">
-        <aside class="sidebar">
-          <div class="sidebar-content highest-consumption">
-              <h3>Highest Electricity Consumption by Suburb</h3>
-              <ul id="highest-electricity"></ul>
-              <h3>Highest Water Consumption by Suburb</h3>
-              <ul id="highest-water"></ul>
+  <header>
+      <h1><img src="icons/icons8-victoria-australia-gradient-96.png" alt="World icon">Victoria's Resource Consumption - Comparing usage through Region</h1>
+      <button class="menu-toggle">≡</button>
+  </header>
+
+  <div class="dashboard">
+
+    <div class="sidebar">
+      <div class="sidebar-content highest-consumption active">
+          <h3>Highest Electricity Consumption by Suburb</h3>
+          <ul id="highest-electricity"></ul>
+          <h3>Highest Water Consumption by Suburb</h3>
+          <ul id="highest-water"></ul>
+      </div>
+      <div class="sidebar-content population-stats">
+          <h3>Population Statistics</h3>
+          <!-- Add relevant content here -->
+      </div>
+      <div class="sidebar-content water-consumption">
+          <h3>Water Consumption Statistics</h3>
+          <!-- Add relevant content here -->
+      </div>
+  </div>
+      
+  <main>
+      <div class="visualization-container">
+
+        <div class="graph_box">
+          <div class="intro-text">
+            <h2>Victoria's Resource Management Story</h2>
+            <p>Welcome to our interactive dashboard exploring Victoria's journey towards sustainable resource management. This visualization tool provides insights into the state's electricity and water consumption patterns across various suburbs and regions.</p>
+            <p>By analyzing this data, we can identify areas of high consumption, track progress in conservation efforts, and make informed decisions for a more sustainable future. Explore the visualizations below to discover how different regions compare in their resource usage and learn about the factors influencing these patterns.</p>
           </div>
-          <div class="sidebar-content population-stats" style="display: none;">
-              <h2>Population Statistics</h2>
+          <div class="intro-image">
+            <img src="/icons/sustainability_image.jpeg" alt="Victoria sustainability image">
           </div>
-          <div class="sidebar-content water-consumption" style="display: none;">
-              <h2>Water Consumption Statistics</h2>
+        </div>
+
+        <br></br><br></br>
+
+        <div class="graph_box">
+          <div class="intro-text">
+            <h2>Victoria's Consumption of Electricity</h2>
+            <p>Electricity is provided to Victoria in many different formats, however it is also interesting to compare how different areas of Melbourne and Victoria consume that energy. Different areas of Victoria have different reasons to consume electricity, either through their phone, or for work wether that is on a computer or powering machinery.</p>
+            <p>The next section will evaluate the different regions of Melbourne, specifically the different Statisical Areas (Level 2), and how each of them compare in their electricity consumpion and production</p>
           </div>
-        </aside>
-        
-        <main>
-            <div class="visualization-container">
 
-              <div class="graph_box">
-                <div class="intro-text">
-                  <h2>Victoria's Resource Management Story</h2>
-                  <p>Welcome to our interactive dashboard exploring Victoria's journey towards sustainable resource management. This visualization tool provides insights into the state's electricity and water consumption patterns across various suburbs and regions.</p>
-                  <p>By analyzing this data, we can identify areas of high consumption, track progress in conservation efforts, and make informed decisions for a more sustainable future. Explore the visualizations below to discover how different regions compare in their resource usage and learn about the factors influencing these patterns.</p>
-                </div>
-                <div class="intro-image">
-                  <img src="/icons/sustainability_image.jpeg" alt="Victoria sustainability image">
-                </div>
-              </div>
+          <div class="intro-image">
+            <img src="/icons/sustainability_image.jpeg" alt="Victoria sustainability image">
+          </div>
+        </div>
 
-              <br></br><br></br>
-
-              <div class="graph_box">
-                <div class="intro-text">
-                  <h2>Victoria's Consumption of Electricity</h2>
-                  <p>Welcome to our interactive dashboard exploring Victoria's journey towards sustainable resource management. This visualization tool provides insights into the state's electricity and water consumption patterns across various suburbs and regions.</p>
-                  <p>By analyzing this data, we can identify areas of high consumption, track progress in conservation efforts, and make informed decisions for a more sustainable future. Explore the visualizations below to discover how different regions compare in their resource usage and learn about the factors influencing these patterns.</p>
-                </div>
-                <div class="intro-image">
-                  <img src="/icons/sustainability_image.jpeg" alt="Victoria sustainability image">
-                </div>
-              </div>
-        
-              <div class="graph_box">
-                <div class="intro-text">
-                  <h2>Victoria Energy Consumption, Production and Facilities by SA2 (2012)</h2>
-                  <div id="vis_map"></div>
-                  <div class="explanation">
-                    <p>The visualisation clearly shows how the different regions of Victoria produce and consume power for the rest of the state. You can additionally observe how the different facilities in Victoria produce and provide power to each other.</p>
-                  </div>
-                </div>
-              </div>
-
-              <div class="graph_box">
-                <div class="intro-text">
-                  <h2>Population Density vs Energy Consumption and Generation Comparison (2023)</h2>
-                  <div id="vis_pop_eng"></div>
-                  <div class="explanation">
-                    <p>By comparing the different Melbourne suburbs by region, you can see a clear divide between the regions alongside how the suburbs' water and electricity consumption completely contrast depending on their situation in Melbourne. Inner Melbourne has the highest energy consumption whilst Northern Melbourne has the highest water consumption.</p>
-                  </div>
-                </div>
-              </div>
-              
-              <br></br><br></br><br></br>
-
-              <div class="graph_box">
-                <div class="intro-text">
-                  <h2>Renewable Energy Resource Usage</h2>
-                  <p>Welcome to our interactive dashboard exploring Victoria's journey towards sustainable resource management. This visualization tool provides insights into the state's electricity and water consumption patterns across various suburbs and regions.</p>
-                  <p>By analyzing this data, we can identify areas of high consumption, track progress in conservation efforts, and make informed decisions for a more sustainable future. Explore the visualizations below to discover how different regions compare in their resource usage and learn about the factors influencing these patterns.</p>
-                </div>
-                <div class="intro-image">
-                  <img src="/icons/sustainability_image.jpeg" alt="Victoria sustainability image">
-                </div>
-              </div>
-
-              <div class="graph_box">
-                <div class="intro-text">
-                  <h2>Population Density vs Energy Consumption and Generation Comparison (2023)</h2>
-                  <div id="vis_renewable_enegy_solwin"></div>
-                </div>
-                <div class="intro-text">
-                  <div class="explanation">
-                    <p>By comparing the different Melbourne suburbs by region, you can see a clear divide between the regions alongside how the suburbs' water and electricity consumption completely contrast depending on their situation in Melbourne. Inner Melbourne has the highest energy consumption whilst Northern Melbourne has the highest water consumption.</p>
-                  </div>
-                  <br></br>
-                  <div class="intro-image">
-                    <img src="/icons/Artboard 3@2x.webp" alt="Infographic">
-                  </div>
-                </div>
-              </div>
-
-              <div class="graph_box">
-                <div class="intro-text">
-                  <h2>Comparison of Solar Panel installations over time by Region (SA4)</h2>
-                  <div id="vis_solar"></div>
-                </div>
-                <div class="intro-image">
-                  <img src="/icons/Artboard 1@2x.webp" alt="Infographic">
-                </div>
-              </div>
-
-              <br></br><br></br><br></br>
-
-              <div class="graph_box">
-                <div class="intro-text">
-                  <h2>Water Consumption throughout Victoria</h2>
-                  <p>Welcome to our interactive dashboard exploring Victoria's journey towards sustainable resource management. This visualization tool provides insights into the state's electricity and water consumption patterns across various suburbs and regions.</p>
-                  <p>By analyzing this data, we can identify areas of high consumption, track progress in conservation efforts, and make informed decisions for a more sustainable future. Explore the visualizations below to discover how different regions compare in their resource usage and learn about the factors influencing these patterns.</p>
-                </div>
-                <div class="intro-image">
-                  <img src="/icons/sustainability_image.jpeg" alt="Victoria sustainability image">
-                </div>
-              </div>
-
-              <div class="graph_box">
-                <div class="intro-text">
-                  <h2>Water vs Electricity Consumption in Melbourne Suburbs by Region</h2>
-                  <div id="vis_water_elec"></div>
-                  <div class="explanation">
-                    <p>By comparing the different Melbourne suburbs by region, you can see a clear divide between the regions alongside how the suburbs' water and electricity consumption completely contrast depending on their situation in Melbourne. Inner Melbourne has the highest energy consumption whilst Northern Melbourne has the highest water consumption.</p>
-                  </div>
-                </div>
-              </div>
-
-              <div class="graph_box">
-                <div class="intro-text">
-                  <h2>Volume of Water Applied for Irrigation by SA4 Region in Victoria (2017-2021)</h2>
-                  <div id="vis_irrigation"></div>
-                </div>
-                <div class="intro-image">
-                  <img src="/icons/Artboard 2@2x.webp" alt="Infographic">
-                </div>
-              </div>
-
-
-              
+        <div class="graph_box">
+          <div class="intro-text">
+            <h2>Victoria Energy Consumption, Production and Facilities by SA2 (2012)</h2>
+            <div id="vis_map"></div>
+            <div class="explanation">
+              <p>The visualisation above shows each level 2 area and displays the average kilo watts an hour the area consumes. Additionally this visualisation also allows us to gain a greater perspective to the amount of infrastructure that is established to ensure consistant power. </p>
+              <p>An interesting comparison through this graph we can accurately see that the highest power consumption is Toorak, however the second highest is Emerald, which despite not being as wealthy, it does make up for size which means more people consume smaller amounts, leading to a highetened power consumption.</p>
 
             </div>
-          </main>
-    </div>
+          </div>
+        </div>
+
+        <div class="graph_box">
+          <div class="intro-text">
+            <h2>Population Density vs Energy Consumption and Generation Comparison (2023)</h2>
+            <div id="vis_pop_eng"></div>
+            <div class="explanation">
+              <p>By comparing the different Melbourne suburbs by region, you can see a clear divide between the regions alongside how the suburbs' water and electricity consumption completely contrast depending on their situation in Melbourne. Inner Melbourne has the highest energy consumption whilst Northern Melbourne has the highest water consumption.</p>
+            </div>
+          </div>
+        </div>
+        
+        <br></br><br></br><br></br>
+
+        <div class="graph_box">
+          <div class="intro-text">
+            <h2>Renewable Energy Resource Usage</h2>
+            <p>Welcome to our interactive dashboard exploring Victoria's journey towards sustainable resource management. This visualization tool provides insights into the state's electricity and water consumption patterns across various suburbs and regions.</p>
+            <p>By analyzing this data, we can identify areas of high consumption, track progress in conservation efforts, and make informed decisions for a more sustainable future. Explore the visualizations below to discover how different regions compare in their resource usage and learn about the factors influencing these patterns.</p>
+          </div>
+          <div class="intro-image">
+            <img src="/icons/sustainability_image.jpeg" alt="Victoria sustainability image">
+          </div>
+        </div>
+
+        <div class="graph_box">
+          <div class="intro-text">
+            <h2>Population Density vs Energy Consumption and Generation Comparison (2023)</h2>
+            <div id="vis_renewable_enegy_solwin"></div>
+          </div>
+          <div class="intro-text">
+            <div class="explanation">
+              <p>By comparing the different Melbourne suburbs by region, you can see a clear divide between the regions alongside how the suburbs' water and electricity consumption completely contrast depending on their situation in Melbourne. Inner Melbourne has the highest energy consumption whilst Northern Melbourne has the highest water consumption.</p>
+            </div>
+            <br></br>
+            <div class="intro-image">
+              <img src="/icons/Artboard 3@2x.webp" alt="Infographic">
+            </div>
+          </div>
+        </div>
+
+        <div class="graph_box">
+          <div class="intro-text">
+            <h2>Comparison of Solar Panel installations over time by Region (SA4)</h2>
+            <div id="vis_solar"></div>
+          </div>
+          <div class="intro-image">
+            <img src="/icons/Artboard 1@2x.webp" alt="Infographic">
+          </div>
+        </div>
+
+        <br></br><br></br><br></br>
+
+        <div class="graph_box">
+          <div class="intro-text">
+            <h2>Water Consumption throughout Victoria</h2>
+            <p>Welcome to our interactive dashboard exploring Victoria's journey towards sustainable resource management. This visualization tool provides insights into the state's electricity and water consumption patterns across various suburbs and regions.</p>
+            <p>By analyzing this data, we can identify areas of high consumption, track progress in conservation efforts, and make informed decisions for a more sustainable future. Explore the visualizations below to discover how different regions compare in their resource usage and learn about the factors influencing these patterns.</p>
+          </div>
+          <div class="intro-image">
+            <img src="/icons/sustainability_image.jpeg" alt="Victoria sustainability image">
+          </div>
+        </div>
+
+        <div class="graph_box">
+          <div class="intro-text">
+            <h2>Water vs Electricity Consumption in Melbourne Suburbs by Region</h2>
+            <div id="vis_water_elec"></div>
+            <div class="explanation">
+              <p>By comparing the different Melbourne suburbs by region, you can see a clear divide between the regions alongside how the suburbs' water and electricity consumption completely contrast depending on their situation in Melbourne. Inner Melbourne has the highest energy consumption whilst Northern Melbourne has the highest water consumption.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="graph_box">
+          <div class="intro-text">
+            <h2>Volume of Water Applied for Irrigation by SA4 Region in Victoria (2017-2021)</h2>
+            <div id="vis_irrigation"></div>
+          </div>
+          <div class="intro-image">
+            <img src="/icons/Artboard 2@2x.webp" alt="Infographic">
+          </div>
+        </div>
+
+        <footer>
+          <p>Author: Jasper Kidman</p>
+          <p>This is a published website for Monash University FIT3179 Assignment</p>
+          <p><a href="sources.html">The data sources are here</a></p>
+          <p>© 2024 Jasper Kidman. All rights reserved.</p>
+        </footer>
+        
+      </div>
+    </main>
+  </div>
 </body>
 </html>

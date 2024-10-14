@@ -1,4 +1,5 @@
 // Function to update highest consumption lists
+// Function to update highest consumption lists
 function updateHighestConsumption(waterData, electricityData) {
     // Define region colors
     const regionColors = {
@@ -7,21 +8,26 @@ function updateHighestConsumption(waterData, electricityData) {
         "Northern Melbourne": "#2ca02c",
         "Eastern Melbourne": "#d62728",
         "Southern Melbourne": "#9467bd",
-        "Bayside Peninsula": "#8c564b"
+        "Bayside Peninsula": "#8c564b",
+        "Regional Victoria": "#e377c2" // Added a new color for Regional Victoria
     };
 
-    // Function to get color based on suburb name
-    function getSuburbColor(suburbName) {
-        const waterItem = waterData.find(w => w.Suburbs.trim() === suburbName.trim());
+    // Function to get color based on suburb name or SA2 code
+    function getSuburbColor(item) {
+        if (item.sa2_code_2011 && item.sa2_code_2011.startsWith('20')) {
+            return regionColors["Regional Victoria"];
+        }
+        const waterItem = waterData.find(w => w.Suburbs.trim() === item.sa2_name.trim());
         return waterItem ? regionColors[waterItem.Region] : "#000000"; // Default to black if not found
     }
 
     // Sort data by electricity consumption
     const sortedByElectricity = [...electricityData]
-        .filter(item => !isNaN(parseFloat(item['Mean - 2012 (kWh)'])))
+        .filter(item => !isNaN(parseFloat(item['Mean - 2012 (kWh)'])) && 
+                        (item.sa2_code_2011.startsWith('20') || waterData.some(w => w.Suburbs.trim() === item.sa2_name.trim())))
         .sort((a, b) => parseFloat(b['Mean - 2012 (kWh)']) - parseFloat(a['Mean - 2012 (kWh)']));
     
-    // Sort data by water consumption
+    // Sort data by water consumption (unchanged)
     const sortedByWater = [...waterData]
         .filter(item => !isNaN(parseFloat(item['2009'])))
         .sort((a, b) => parseFloat(b['2009']) - parseFloat(a['2009']));
@@ -29,14 +35,14 @@ function updateHighestConsumption(waterData, electricityData) {
     // Update electricity list
     const electricityList = document.getElementById('highest-electricity');
     electricityList.innerHTML = sortedByElectricity.slice(0, 5).map(item => {
-        const color = getSuburbColor(item.sa2_name);
+        const color = getSuburbColor(item);
         return `<li style="color: ${color}; margin-bottom: 10px;">
             <div>${item.sa2_name}:</div>
             <div style="margin-left: 10px;">${Math.round(parseFloat(item['Mean - 2012 (kWh)']))} kWh</div>
         </li>`;
     }).join('');
     
-    // Update water list
+    // Update water list (unchanged)
     const waterList = document.getElementById('highest-water');
     waterList.innerHTML = sortedByWater.slice(0, 5).map(item => 
         `<li style="color: ${regionColors[item.Region]}; margin-bottom: 10px;">
@@ -79,7 +85,7 @@ async function loadVisualizations() {
         // Load the Victoria Energy Consumption map
         await vegaEmbed('#vis_pop_eng', 'graphs/population-density-energy-comparison.vg.json');
         console.log('vis_pop_eng loaded successfully');
-        
+
         // Load the Solar Panel info
         await vegaEmbed('#vis_solar', 'graphs/sa4_solar_installations.vg.json');
         console.log('vis_solar loaded successfully');
@@ -101,33 +107,42 @@ async function loadVisualizations() {
 
 // Function to handle sidebar content switching
 function handleSidebarContent() {
-    const sidebar = document.querySelector('.sidebar');
-    const highestConsumption = document.querySelector('.highest-consumption');
-    const populationStats = document.querySelector('.population-stats');
-    const waterConsumption = document.querySelector('.water-consumption');
-    
-    // Set initial active content
-    setActiveContent(highestConsumption);
+    const main = document.querySelector('main');
+    const sidebarContents = document.querySelectorAll('.sidebar-content');
     
     // Define the sections and their corresponding sidebar contents
     const sections = [
-        { element: document.querySelector('h2:contains("Victoria\'s Consumption of Electricity")'), content: highestConsumption },
-        { element: document.querySelector('h2:contains("Population Density vs Energy Consumption and Generation Comparison (2023)")'), content: populationStats },
-        { element: document.querySelector('h2:contains("Water Consumption throughout Victoria")'), content: waterConsumption }
+        { 
+            element: main.querySelector('h2:nth-of-type(1)'),
+            content: document.querySelector('.highest-consumption')
+        },
+        { 
+            element: main.querySelector('h2:nth-of-type(2)'),
+            content: document.querySelector('.population-stats')
+        },
+        { 
+            element: main.querySelector('h2:nth-of-type(3)'),
+            content: document.querySelector('.water-consumption')
+        }
     ];
     
-    window.addEventListener('scroll', () => {
-        const scrollPosition = window.scrollY + window.innerHeight / 3; // Adjust this value to change when the switch happens
+    // Set initial active content
+    setActiveContent(sections[0].content);
+    
+    main.addEventListener('scroll', () => {
+        const scrollPosition = main.scrollTop + main.clientHeight / 3;
         
         for (let i = sections.length - 1; i >= 0; i--) {
             if (sections[i].element && scrollPosition > sections[i].element.offsetTop) {
                 setActiveContent(sections[i].content);
+                console.log(`Activated section: ${sections[i].element.textContent.trim()}`);
                 break;
             }
         }
     });
 }
 
+// Function to set active content
 function setActiveContent(activeElement) {
     const contents = document.querySelectorAll('.sidebar-content');
     contents.forEach(content => {
@@ -138,10 +153,10 @@ function setActiveContent(activeElement) {
     activeElement.style.display = 'block';
 }
 
-// Function to find elements by text content
+// Helper function to find elements by text content
 function getElementByText(selector, text) {
     return Array.from(document.querySelectorAll(selector)).find(
-        element => element.textContent.includes(text)
+        element => element.textContent.trim().includes(text.trim())
     );
 }
 
