@@ -80,6 +80,17 @@ async function loadVisualizations() {
         await vegaEmbed('#vis_pop_eng', 'graphs/population-density-energy-comparison.vg.json');
         console.log('vis_pop_eng loaded successfully');
 
+        vegaEmbed('#vis_pop_eng_1', 'graphs/population-density-energy-comparison.vg.json');
+        vegaEmbed('#vis_pop_eng_2', 'graphs/population-density-energy-comparison.vg.json');
+
+        // Load the Solar Panel info
+        await vegaEmbed('#vis_solar', 'graphs/sa4_solar_installations.vg.json');
+        console.log('vis_solar loaded successfully');
+        
+        // Load the Solar Panel info
+        await vegaEmbed('#vis_irrigation', 'graphs/water_irrigation.vg.json');
+        console.log('vis_irrigation loaded successfully');
+
         // Update the highest consumption lists
         updateHighestConsumption(waterData, electricityData);
     } catch (error) {

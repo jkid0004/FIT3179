@@ -1,0 +1,46 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "width": 600,
+    "height": 400,
+    "data": {"url": "../data/SA4_Vic_LandData.csv"},
+    "transform": [
+      {
+        "calculate": "isValid(datum['Volume of water applied to irrigated agricultural land (ML)']) ? parseFloat(datum['Volume of water applied to irrigated agricultural land (ML)']) : 0",
+        "as": "WaterVolume"
+      },
+      {
+        "filter": "datum.WaterVolume > 5"
+      },
+      {
+        "filter": "datum.Year >= 2017 && datum.Year <= 2021"
+      }
+    ],
+    "layer": [
+      {
+        "mark": "bar",
+        "encoding": {
+          "x": {
+            "field": "Label",
+            "type": "nominal",
+            "axis": {"title": "SA4 Region", "labelAngle": -45},
+            "sort": {
+                "field": "WaterVolume",
+                "order": "descending"
+            }
+          },
+          "y": {
+            "field": "WaterVolume",
+            "type": "quantitative",
+            "axis": {"title": "Volume of Water Applied (ML)"},
+            "stack": true
+          },
+          "color": {"field": "Year", "type": "ordinal"},
+          "tooltip": [
+            {"field": "Label", "type": "nominal", "title": "Region"},
+            {"field": "WaterVolume", "type": "quantitative", "title": "Water Volume (ML)", "format": ",.0f"},
+            {"field": "Year", "type": "ordinal"}
+          ]
+        }
+      }
+    ]
+  }

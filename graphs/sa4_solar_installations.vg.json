@@ -1,0 +1,55 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Solar Panel Installations by SA4 Region in Victoria (2018-2023)",
+  "data": {
+    "url": "../data/SA4_Vic_LandData.csv"
+  },
+  "transform": [
+    {
+      "calculate": "datum['Small-scale solar panel system installations (no.)'] === '-' ? 0 : parseFloat(replace(datum['Small-scale solar panel system installations (no.)'], ',', ''))",
+      "as": "Installations"
+    },
+    {"filter": "datum.Year >= 2018"},
+    {"filter": "datum.Installations > 0"},
+    {"filter": "Region_filter == null || datum.Label == Region_filter"}
+  ],
+  "params": [{
+    "name": "Region_filter",
+    "bind": {
+      "input": "select",
+      "options": [null, "Ballarat", "Bendigo", "Geelong", "Hume", "Latrobe - Gippsland", "Melbourne - Inner", "Melbourne - Inner East", "Melbourne - Inner South", "Melbourne - North East", "Melbourne - North West", "Melbourne - Outer East", "Melbourne - South East", "Melbourne - West", "Mornington Peninsula", "North West", "Shepparton", "Warrnambool and South West"],
+      "labels": ["All Regions", "Ballarat", "Bendigo", "Geelong", "Hume", "Latrobe - Gippsland", "Melbourne - Inner", "Melbourne - Inner East", "Melbourne - Inner South", "Melbourne - North East", "Melbourne - North West", "Melbourne - Outer East", "Melbourne - South East", "Melbourne - West", "Mornington Peninsula", "North West", "Shepparton", "Warrnambool and South West"],
+      "name": "Select Region:     "
+    }
+  }],
+  "layer": [
+    {
+      "mark": {"type": "line", "color": "#0077be", "tooltip": true},
+      "encoding": {
+        "x": {"field": "Year", "type": "ordinal", "title": "Year"},
+        "y": {"field": "Installations", "type": "quantitative", "title": "Number of Installations", "scale": {"domain": [0, 15000]}},
+        "detail": {"field": "Label", "type": "nominal"},
+        "tooltip": [
+          {"field": "Label", "type": "nominal", "title": "SA4 Region"},
+          {"field": "Year", "type": "ordinal"},
+          {"field": "Installations", "type": "quantitative", "title": "Installations", "format": ",.0f"}
+        ]
+      }
+    },
+    {
+      "mark": {"type": "point", "color": "#0077be"},
+      "encoding": {
+        "x": {"field": "Year", "type": "ordinal"},
+        "y": {"field": "Installations", "type": "quantitative", "scale": {"domain": [0, 15000]}},
+        "detail": {"field": "Label", "type": "nominal"},
+        "tooltip": [
+          {"field": "Label", "type": "nominal", "title": "SA4 Region"},
+          {"field": "Year", "type": "ordinal"},
+          {"field": "Installations", "type": "quantitative", "title": "Installations", "format": ",.0f"}
+        ]
+      }
+    }
+  ],
+  "width": 700,
+  "height": 500
+}
