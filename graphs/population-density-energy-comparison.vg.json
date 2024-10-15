@@ -1,0 +1,136 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "data": {"url": "../data/population-sa2s.csv"},
+  "background": "#f9f9f9",
+  "transform": [
+    {
+      "lookup": "sa2_name",
+      "from": {
+        "data": {"url": "../data/generated-sa2s.csv"},
+        "key": "sa2_name",
+        "fields": ["Mean - 2011 (kWh)"]
+      }
+    },
+    {
+      "lookup": "sa2_name",
+      "from": {
+        "data": {"url": "../data/supplied-sa2s.csv"},
+        "key": "sa2_name",
+        "fields": ["Mean - 2011 (kWh)"]
+      },
+      "as": ["Supplied_Energy"]
+    },
+    {
+      "calculate": "datum['persons/km2']",
+      "as": "Population Density"
+    },
+    {
+      "calculate": "datum['Mean - 2011 (kWh)']",
+      "as": "Energy Consumption"
+    },
+    {
+      "filter": "datum['Population Density'] != 0 && datum['Energy Consumption'] != 0"
+    },
+    {
+      "filter": "datum['Population Density'] <= population_density_limit"
+    },
+    {
+      "filter": "sa4_area == 'All' || datum.sa4_name == sa4_area"
+    }
+  ],
+  "params": [
+    {
+      "name": "population_density_limit",
+      "value": 12000,
+      "bind": {
+        "input": "range",
+        "min": 100,
+        "max": 12000,
+        "step": 100,
+        "name": "Max Population Density: "
+      }
+    },
+    {
+      "name": "sa4_area",
+      "value": "All",
+      "bind": {
+        "input": "select",
+        "options": [
+          "All",
+          "Ballarat",
+          "Bendigo",
+          "Geelong",
+          "Hume",
+          "Latrobe - Gippsland",
+          "Melbourne - Inner",
+          "Melbourne - Inner East",
+          "Melbourne - Inner South",
+          "Melbourne - North East",
+          "Melbourne - North West",
+          "Melbourne - Outer East",
+          "Melbourne - South East",
+          "Melbourne - West",
+          "Mornington Peninsula",
+          "North West",
+          "Shepparton",
+          "Warrnambool and South West"
+        ],
+        "name": "SA4 Area:  "
+      }
+    }
+  ],
+  "hconcat": [
+    {
+      "width": 500,
+      "height": 400,
+      "title": "Total Energy Generated",
+      "mark": {"type": "point", "color": "#0077be"},
+      "encoding": {
+        "x": {
+          "field": "Population Density", 
+          "type": "quantitative", 
+          "title": "Population Density (persons/km²)",
+          "scale": {"zero": false, "domain": [0, {"expr": "population_density_limit"}]}
+        },
+        "y": {
+          "field": "Energy Consumption", 
+          "type": "quantitative", 
+          "title": "Energy Generated (kWh)",
+          "scale": {"zero": false, "domain": [200, 1400]}
+        },
+        "tooltip": [
+          {"field": "sa2_name", "type": "nominal", "title": "SA2 Area"},
+          {"field": "sa4_name", "type": "nominal", "title": "SA4 Area"},
+          {"field": "Population Density", "type": "quantitative", "title": "Population Density (persons/km²)"},
+          {"field": "Energy Consumption", "type": "quantitative", "title": "Energy Generated (kWh)"}
+        ]
+      }
+    },
+    {
+      "width": 500,
+      "height": 400,
+      "title": "Total Energy Consumed",
+      "mark": {"type": "point", "color": "#ff7f0e"},
+      "encoding": {
+        "x": {
+          "field": "Population Density", 
+          "type": "quantitative", 
+          "title": "Population Density (persons/km²)",
+          "scale": {"zero": false, "domain": [0, {"expr": "population_density_limit"}]}
+        },
+        "y": {
+          "field": "Supplied_Energy", 
+          "type": "quantitative", 
+          "title": "Supplied Energy Consumption (kWh)",
+          "scale": {"zero": false, "domain": [200, 9500]}
+        },
+        "tooltip": [
+          {"field": "sa2_name", "type": "nominal", "title": "SA2 Area"},
+          {"field": "sa4_name", "type": "nominal", "title": "SA4 Area"},
+          {"field": "Population Density", "type": "quantitative", "title": "Population Density (persons/km²)"},
+          {"field": "Supplied_Energy", "type": "quantitative", "title": "Supplied Energy Consumption (kWh)"}
+        ]
+      }
+    }
+  ]
+}

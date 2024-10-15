@@ -1,0 +1,6 @@
+https://www.energy.gov.au/publications/australian-energy-update-2024
+https://dbr.abs.gov.au/
+https://www.abs.gov.au/statistics/standards/australian-statistical-geography-standard-asgs-edition-3/jul2021-jun2026/access-and-downloads/digital-boundary-files
+https://www.abs.gov.au/AUSSTATS/abs@.nsf/DetailsPage/4670.02012?OpenDocument
+https://datashare.maps.vic.gov.au/
+https://fit3179.github.io/Vega-Lite/
