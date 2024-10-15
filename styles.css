@@ -68,10 +68,13 @@ h1 img {
 
 .sidebar-content {
     display: none;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
 }
 
 .sidebar-content.active {
     display: block;
+    opacity: 1;
 }
 
 main {
@@ -169,25 +172,25 @@ h2 {
     margin-bottom: 20px;
 }
 
-.highest-consumption h4 {
+.sidebar h4 {
     margin-top: 20px;
     margin-bottom: 10px;
 }
 
-.highest-consumption ul {
+.sidebar ul {
     list-style-type: none;
     padding-left: 0;
 }
 
-.highest-consumption li {
+.sidebar li {
     margin-bottom: 15px;
 }
 
-.highest-consumption li div:first-child {
+.sidebar li div:first-child {
     font-weight: bold;
 }
 
-.highest-consumption li div:last-child {
+.sidebar li div:last-child {
     margin-left: 10px;
 }
 

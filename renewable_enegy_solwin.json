@@ -116,7 +116,7 @@
         },
         {
           "data": {
-            "url": ".geo_data/solar_map.json",
+            "url": "data/geo_data/solar_map.json",
             "format": {
               "type": "json",
               "property": "features"

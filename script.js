@@ -1,25 +1,4 @@
-// Function to update highest consumption lists
 function updateHighestConsumption(waterData, electricityData) {
-    // Define region colors
-    const regionColors = {
-        "Inner Melbourne": "#000000",
-        "Western Melbourne": "#000000",
-        "Northern Melbourne": "#000000",
-        "Eastern Melbourne": "#000000",
-        "Southern Melbourne": "#000000",
-        "Bayside Peninsula": "#000000",
-        "Regional Victoria": "#000000"
-    };
-
-    // Function to get color based on suburb name or SA2 code
-    function getSuburbColor(item) {
-        if (item.sa2_code_2011 && item.sa2_code_2011.startsWith('20')) {
-            return regionColors["Regional Victoria"];
-        }
-        const waterItem = waterData.find(w => w.Suburbs.trim() === item.sa2_name.trim());
-        return waterItem ? regionColors[waterItem.Region] : "#000000";
-    }
-
     // Sort data by electricity consumption
     const sortedByElectricity = [...electricityData]
         .filter(item => !isNaN(parseFloat(item['Mean - 2012 (kWh)'])) && 
@@ -33,22 +12,148 @@ function updateHighestConsumption(waterData, electricityData) {
     
     // Update electricity list
     const electricityList = document.getElementById('highest-electricity');
-    electricityList.innerHTML = sortedByElectricity.slice(0, 5).map(item => {
-        const color = getSuburbColor(item);
-        return `<li style="color: ${color}; margin-bottom: 10px;">
+    electricityList.innerHTML = sortedByElectricity.slice(0, 5).map(item => `
+        <li style="margin-bottom: 10px;">
             <div>${item.sa2_name}:</div>
             <div style="margin-left: 10px;">${Math.round(parseFloat(item['Mean - 2012 (kWh)']))} kWh</div>
-        </li>`;
-    }).join('');
+        </li>
+    `).join('');
     
     // Update water list
     const waterList = document.getElementById('highest-water');
-    waterList.innerHTML = sortedByWater.slice(0, 5).map(item => 
-        `<li style="color: ${regionColors[item.Region]}; margin-bottom: 10px;">
+    waterList.innerHTML = sortedByWater.slice(0, 5).map(item => `
+        <li style="margin-bottom: 10px;">
             <div>${item.Suburbs}:</div>
             <div style="margin-left: 10px;">${Math.round(parseFloat(item['2009']))} L/household/day</div>
-        </li>`
-    ).join('');
+        </li>
+    `).join('');
+
+    const waterUsageData = [
+        { year: 2018, volume: 1634030 },
+        { year: 2017, volume: 1546197 },
+        { year: 2019, volume: 1494826 },
+        { year: 2021, volume: 1324234 },
+        { year: 2020, volume: 1308730 }
+    ];
+    
+    // Update water usage list
+    const waterUsageList = document.getElementById('top-water-usage-years');
+    waterUsageList.innerHTML = waterUsageData.map(item => `
+        <li style="margin-bottom: 10px;">
+            <div>${item.year}:</div>
+            <div style="margin-left: 10px;">
+                Volume of water applied to irrigated agricultural land: ${item.volume.toLocaleString()} ML
+            </div>
+        </li>
+    `).join('');
+}
+
+function updateLowestConsumptionDensityRatio(electricityData, populationData) {
+    // Combine electricity and population data
+    const combinedData = electricityData.map(elecItem => {
+        const popItem = populationData.find(p => p.sa2_code_2011 === elecItem.sa2_code_2011);
+        if (popItem) {
+            return {
+                sa2_name: elecItem.sa2_name,
+                consumption: parseFloat(elecItem['Mean - 2012 (kWh)']),
+                density: parseFloat(popItem['persons/km2']),
+                ratio: parseFloat(elecItem['Mean - 2012 (kWh)']) / parseFloat(popItem['persons/km2'])
+            };
+        }
+        return null;
+    }).filter(item => item !== null && !isNaN(item.ratio) && item.ratio > 0);
+
+    // Sort data by consumption to density ratio (ascending order for lowest)
+    const sortedByRatio = combinedData.sort((a, b) => a.ratio - b.ratio);
+
+    // Update the list
+    const ratioList = document.getElementById('lowest-consumption-density-ratio');
+    ratioList.innerHTML = sortedByRatio.slice(0, 4).map(item => `
+        <li style="margin-bottom: 10px;">
+            <div>${item.sa2_name}:</div>
+            <div style="margin-left: 10px;">
+                Ratio: ${item.ratio.toFixed(2)} kWh per person/km²
+            </div>
+            <div style="margin-left: 10px;">
+                Consumption: ${Math.round(item.consumption).toLocaleString()} kWh
+            </div>
+            <div style="margin-left: 10px;">
+                Density: ${item.density.toFixed(2)} persons/km²
+            </div>
+        </li>
+    `).join('');
+}
+
+function updateSustainablePractices(victoriaEnergyData, landData) {
+    // Process Victoria Energy Data (unchanged)
+    victoriaEnergyData.sort((a, b) => parseInt(a.Year) - parseInt(b.Year));
+    
+    let totalIncrease = 0;
+    let yearsCount = 0;
+    
+    const renewablesData = victoriaEnergyData.reduce((acc, curr, index, array) => {
+        if (index > 0) {
+            const prevYear = parseFloat(array[index - 1].Renewables);
+            const currYear = parseFloat(curr.Renewables);
+            const increase = currYear - prevYear;
+            totalIncrease += increase;
+            yearsCount++;
+            
+            acc.push({
+                year: parseInt(curr.Year),
+                renewables: currYear,
+                increase: increase,
+                total: parseFloat(curr.Total.replace(',', ''))
+            });
+        }
+        return acc;
+    }, []);
+
+    const averageIncrease = totalIncrease / yearsCount;
+    
+    renewablesData.sort((a, b) => b.increase - a.increase);
+
+    // Update renewables list (unchanged)
+    const renewablesList = document.getElementById('top-renewables-usage');
+    renewablesList.innerHTML = `
+        <li style="margin-bottom: 10px;">
+            <div>Average Yearly Increase in Renewables:</div>
+            <div style="margin-left: 10px;">
+                ${averageIncrease.toFixed(2)} PJ
+            </div>
+        </li>
+    ` + renewablesData.slice(0, 3).map(item => `
+        <li style="margin-bottom: 10px;">
+            <div>${item.year}:</div>
+            <div style="margin-left: 10px;">
+                Renewables: ${item.renewables.toFixed(1)} PJ
+            </div>
+            <div style="margin-left: 10px;">
+                Increase: ${item.increase.toFixed(2)} PJ
+            </div>
+            <div style="margin-left: 10px;">
+                Total Energy: ${item.total.toFixed(1)} PJ
+            </div>
+        </li>
+    `).join('');
+
+    const solarData = [
+        { region: "Melbourne - South East", average: 9650 },
+        { region: "Melbourne - West", average: 9482 },
+        { region: "Melbourne - North East", average: 5010 },
+        { region: "Melbourne - Outer East", average: 4763 }
+    ];
+
+    // Update solar installations list
+    const solarList = document.getElementById('top-solar-installations');
+    solarList.innerHTML = solarData.map(item => `
+        <li style="margin-bottom: 10px;">
+            <div>${item.region}:</div>
+            <div style="margin-left: 10px;">
+                Average Solar Panel Installations (2018-2023): ${item.average.toLocaleString()}
+            </div>
+        </li>
+    `).join('');
 }
 
 // Function to load CSV data
@@ -72,10 +177,6 @@ async function loadVisualizations() {
         // Load the Victoria Energy Consumption map
         await vegaEmbed('#vis_map', 'energy_consumption_map.vg.json');
         console.log('vis_map loaded successfully');
-
-        // Load the Water vs Electricity Consumption data
-        const waterData = await loadCSVData('data/wateruse.csv');
-        const electricityData = await loadCSVData('data/supplied-sa2s.csv');
         
         // Render the Water vs Electricity Consumption scatter plot
         await vegaEmbed('#vis_water_elec', 'vic-consumption-water-elec.json');
@@ -97,8 +198,19 @@ async function loadVisualizations() {
         await vegaEmbed('#vis_renewable_enegy_solwin', 'renewable_enegy_solwin.json');
         console.log('vis_solar_wind loaded successfully');
 
+        // Load the Water vs Electricity Consumption data
+        const waterData = await loadCSVData('data/wateruse.csv');
+        const electricityData = await loadCSVData('data/supplied-sa2s.csv');
+        const populationData  = await loadCSVData('data/population-sa2s.csv');
+        const victoriaEnergyData = await loadCSVData('data/victoria_energy.csv');
+        const landData = await loadCSVData('data/SA4_Vic_LandData.csv');
+
         // Update the highest consumption lists
         updateHighestConsumption(waterData, electricityData);
+        updateLowestConsumptionDensityRatio(electricityData, populationData);
+        updateSustainablePractices(victoriaEnergyData, landData);
+
+
     } catch (error) {
         console.error('Error loading visualizations:', error);
     }
@@ -116,7 +228,15 @@ function handleSidebarContent() {
             content: document.querySelector('.highest-consumption')
         },
         { 
+            element: getElementByText('p', "An interesting comparison to note is that more urban regions inside of Melbourne tend to have a higher population density, but have a lower mean electricity total. This could be because of the maintance of good energy practices, whilst more rural regions tend to have higher energy usage."),
+            content: document.querySelector('.highest-consumption')
+        },
+        { 
             element: getElementByText('h2', "Renewable Energy Resource Usage"),
+            content: document.querySelector('.population-stats')
+        },
+        { 
+            element: getElementByText('p', "This visualisation show the different statisical areas (level 4), and how many solar panels were installed on households each year. From the data you can see that there is a consistant increase up to 2021, which is when the solar panel rebate was introduced into Victoria, creating incentive to add solar panels to your house."),
             content: document.querySelector('.population-stats')
         },
         { 
@@ -149,15 +269,21 @@ function handleSidebarContent() {
     });
 }
 
-// Function to set active content
 function setActiveContent(activeElement) {
     const contents = document.querySelectorAll('.sidebar-content');
     contents.forEach(content => {
-        content.classList.remove('active');
-        content.style.display = 'none';
+        if (content === activeElement) {
+            content.style.display = 'block';
+            setTimeout(() => {
+                content.classList.add('active');
+            }, 10);
+        } else {
+            content.classList.remove('active');
+            setTimeout(() => {
+                content.style.display = 'none';
+            }, 0); // Match this to the transition duration in CSS
+        }
     });
-    activeElement.classList.add('active');
-    activeElement.style.display = 'block';
 }
 
 
@@ -178,10 +304,10 @@ document.addEventListener('DOMContentLoaded', (event) => {
     });
 
     loadVisualizations().then(() => {
-        //handleSidebarContent();
+        handleSidebarContent();
         
         // Trigger a scroll event to set the correct initial state
-        //window.dispatchEvent(new Event('scroll'));
+        window.dispatchEvent(new Event('scroll'));
     });
 
     // Handle window resize
