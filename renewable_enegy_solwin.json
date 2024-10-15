@@ -8,7 +8,7 @@
       "width": 600,
       "height": 400,
       "data": {
-        "url": "./data/victoria_energy.csv"
+        "url": "data/victoria_energy.csv"
       },
       "transform": [
         {
@@ -59,7 +59,7 @@
       "layer": [
         {
           "data": {
-            "url": "./data/geo_data/SA2_2021_Victoria.topojson",
+            "url": "data/geo_data/SA2_2021_Victoria.topojson",
             "format": {
               "type": "topojson",
               "feature": "SA2_2021_Victoria_filtered"
@@ -84,7 +84,7 @@
         },
         {
           "data": {
-            "url": "./data/geo_data/wind_map.json",
+            "url": "data/geo_data/wind_map.json",
             "format": {
               "type": "json",
               "property": "features"

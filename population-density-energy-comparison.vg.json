@@ -1,12 +1,12 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "data": {"url": "./data/population-sa2s.csv"},
+  "data": {"url": "data/population-sa2s.csv"},
   "background": "#f9f9f9",
   "transform": [
     {
       "lookup": "sa2_name",
       "from": {
-        "data": {"url": "./data/generated-sa2s.csv"},
+        "data": {"url": "data/generated-sa2s.csv"},
         "key": "sa2_name",
         "fields": ["Mean - 2011 (kWh)"]
       }
@@ -14,7 +14,7 @@
     {
       "lookup": "sa2_name",
       "from": {
-        "data": {"url": "./data/supplied-sa2s.csv"},
+        "data": {"url": "data/supplied-sa2s.csv"},
         "key": "sa2_name",
         "fields": ["Mean - 2011 (kWh)"]
       },

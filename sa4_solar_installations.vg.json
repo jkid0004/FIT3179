@@ -5,7 +5,7 @@
   "height": 750,
   "background": "#f9f9f9",
   "data": {
-    "url": "./data/SA4_Vic_LandData.csv"
+    "url": "data/SA4_Vic_LandData.csv"
   },
   "transform": [
     {

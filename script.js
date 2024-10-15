@@ -70,7 +70,7 @@ async function loadCSVData(url) {
 async function loadVisualizations() {
     try {
         // Load the Victoria Energy Consumption map
-        await vegaEmbed('#vis_map', 'graphs/energy_consumption_map.vg.json');
+        await vegaEmbed('#vis_map', 'energy_consumption_map.vg.json');
         console.log('vis_map loaded successfully');
 
         // Load the Water vs Electricity Consumption data
@@ -78,23 +78,23 @@ async function loadVisualizations() {
         const electricityData = await loadCSVData('data/supplied-sa2s.csv');
         
         // Render the Water vs Electricity Consumption scatter plot
-        await vegaEmbed('#vis_water_elec', 'graphs/vic-consumption-water-elec.json');
+        await vegaEmbed('#vis_water_elec', 'vic-consumption-water-elec.json');
         console.log('vis_water_elec loaded successfully');
 
         // Load the Victoria Energy Consumption map
-        await vegaEmbed('#vis_pop_eng', 'graphs/population-density-energy-comparison.vg.json');
+        await vegaEmbed('#vis_pop_eng', 'population-density-energy-comparison.vg.json');
         console.log('vis_pop_eng loaded successfully');
 
         // Load the Solar Panel info
-        await vegaEmbed('#vis_solar', 'graphs/sa4_solar_installations.vg.json');
+        await vegaEmbed('#vis_solar', 'sa4_solar_installations.vg.json');
         console.log('vis_solar loaded successfully');
         
         // Load the vis_irrigation
-        await vegaEmbed('#vis_irrigation', 'graphs/water_irrigation.vg.json');
+        await vegaEmbed('#vis_irrigation', 'water_irrigation.vg.json');
         console.log('vis_irrigation loaded successfully');
 
         // Load the vis_solar_wind
-        await vegaEmbed('#vis_renewable_enegy_solwin', 'graphs/renewable_enegy_solwin.json');
+        await vegaEmbed('#vis_renewable_enegy_solwin', 'renewable_enegy_solwin.json');
         console.log('vis_solar_wind loaded successfully');
 
         // Update the highest consumption lists
