@@ -115,7 +115,11 @@ main {
     margin-bottom: 20px;
 }
 
-#vis_map, #vis_solar, #vis_pop_eng, #vis_irrigation {
+#vis_solar {
+    height: 850px;
+}
+
+#vis_map, #vis_pop_eng, #vis_irrigation {
     height: 600px;
 }
 
@@ -237,10 +241,24 @@ h2 {
     height: auto;
 }
 
+.icon-image {
+    flex: 0 0 300px;
+    height: auto;
+}
+
+.icon-image img {
+    width: 200px;
+    height: auto;
+    padding-left:60px;
+    align-items: start;
+    border-radius: 4px;
+}
+
+
 .intro-image img {
     width: 100%;
     height: auto;
-    border-radius: 8px;
+    border-radius: 4px;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 

@@ -214,7 +214,7 @@
           "type": "nominal",
           "scale": {
             "domain": ["Plant", "Platform", "Power Station", "City Gate Station", "Subsea Production Facilities"],
-            "range": ["#0bb4ff", "#50e991", "#e60049", "#9b19f5", "#ffa300"]
+            "range": ["#0bb4ff", "#50e991", "#4832ea", "#9b19f5", "#ffa300"]
           },
           "legend": {
             "title": "Facility Type",

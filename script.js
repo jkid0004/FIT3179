@@ -1,15 +1,14 @@
 // Function to update highest consumption lists
-// Function to update highest consumption lists
 function updateHighestConsumption(waterData, electricityData) {
     // Define region colors
     const regionColors = {
-        "Inner Melbourne": "#1f77b4",
-        "Western Melbourne": "#ff7f0e",
-        "Northern Melbourne": "#2ca02c",
-        "Eastern Melbourne": "#d62728",
-        "Southern Melbourne": "#9467bd",
-        "Bayside Peninsula": "#8c564b",
-        "Regional Victoria": "#e377c2" // Added a new color for Regional Victoria
+        "Inner Melbourne": "#000000",
+        "Western Melbourne": "#000000",
+        "Northern Melbourne": "#000000",
+        "Eastern Melbourne": "#000000",
+        "Southern Melbourne": "#000000",
+        "Bayside Peninsula": "#000000",
+        "Regional Victoria": "#000000"
     };
 
     // Function to get color based on suburb name or SA2 code
@@ -18,7 +17,7 @@ function updateHighestConsumption(waterData, electricityData) {
             return regionColors["Regional Victoria"];
         }
         const waterItem = waterData.find(w => w.Suburbs.trim() === item.sa2_name.trim());
-        return waterItem ? regionColors[waterItem.Region] : "#000000"; // Default to black if not found
+        return waterItem ? regionColors[waterItem.Region] : "#000000";
     }
 
     // Sort data by electricity consumption
@@ -27,7 +26,7 @@ function updateHighestConsumption(waterData, electricityData) {
                         (item.sa2_code_2011.startsWith('20') || waterData.some(w => w.Suburbs.trim() === item.sa2_name.trim())))
         .sort((a, b) => parseFloat(b['Mean - 2012 (kWh)']) - parseFloat(a['Mean - 2012 (kWh)']));
     
-    // Sort data by water consumption (unchanged)
+    // Sort data by water consumption
     const sortedByWater = [...waterData]
         .filter(item => !isNaN(parseFloat(item['2009'])))
         .sort((a, b) => parseFloat(b['2009']) - parseFloat(a['2009']));
@@ -42,7 +41,7 @@ function updateHighestConsumption(waterData, electricityData) {
         </li>`;
     }).join('');
     
-    // Update water list (unchanged)
+    // Update water list
     const waterList = document.getElementById('highest-water');
     waterList.innerHTML = sortedByWater.slice(0, 5).map(item => 
         `<li style="color: ${regionColors[item.Region]}; margin-bottom: 10px;">
@@ -113,15 +112,15 @@ function handleSidebarContent() {
     // Define the sections and their corresponding sidebar contents
     const sections = [
         { 
-            element: main.querySelector('h2:nth-of-type(1)'),
+            element: getElementByText('h2', "Victoria's Resource Management Story"),
             content: document.querySelector('.highest-consumption')
         },
         { 
-            element: main.querySelector('h2:nth-of-type(2)'),
+            element: getElementByText('h2', "Renewable Energy Resource Usage"),
             content: document.querySelector('.population-stats')
         },
         { 
-            element: main.querySelector('h2:nth-of-type(3)'),
+            element: getElementByText('h2', "Water Consumption throughout Victoria"),
             content: document.querySelector('.water-consumption')
         }
     ];
@@ -129,15 +128,23 @@ function handleSidebarContent() {
     // Set initial active content
     setActiveContent(sections[0].content);
     
-    main.addEventListener('scroll', () => {
-        const scrollPosition = main.scrollTop + main.clientHeight / 3;
-        
-        for (let i = sections.length - 1; i >= 0; i--) {
-            if (sections[i].element && scrollPosition > sections[i].element.offsetTop) {
-                setActiveContent(sections[i].content);
-                console.log(`Activated section: ${sections[i].element.textContent.trim()}`);
-                break;
+    // Use IntersectionObserver to detect when sections enter/exit the viewport
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const activeSection = sections.find(section => section.element === entry.target);
+                if (activeSection) {
+                    setActiveContent(activeSection.content);
+                    console.log(`Activated section: ${activeSection.element.textContent.trim()}`);
+                }
             }
+        });
+    }, { threshold: 0.5 }); // Trigger when 50% of the section is visible
+
+    // Observe all section elements
+    sections.forEach(section => {
+        if (section.element) {
+            observer.observe(section.element);
         }
     });
 }
@@ -152,6 +159,7 @@ function setActiveContent(activeElement) {
     activeElement.classList.add('active');
     activeElement.style.display = 'block';
 }
+
 
 // Helper function to find elements by text content
 function getElementByText(selector, text) {
@@ -170,10 +178,10 @@ document.addEventListener('DOMContentLoaded', (event) => {
     });
 
     loadVisualizations().then(() => {
-        handleSidebarContent();
+        //handleSidebarContent();
         
         // Trigger a scroll event to set the correct initial state
-        window.dispatchEvent(new Event('scroll'));
+        //window.dispatchEvent(new Event('scroll'));
     });
 
     // Handle window resize

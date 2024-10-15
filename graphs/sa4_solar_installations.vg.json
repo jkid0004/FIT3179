@@ -1,6 +1,8 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "description": "Solar Panel Installations by SA4 Region in Victoria (2018-2023)",
+  "width": 700,
+  "height": 750,
   "background": "#f9f9f9",
   "data": {
     "url": "../data/SA4_Vic_LandData.csv"
@@ -50,7 +52,5 @@
         ]
       }
     }
-  ],
-  "width": 700,
-  "height": 500
+  ]
 }

@@ -95,14 +95,14 @@
         "y": {
           "field": "Energy Consumption", 
           "type": "quantitative", 
-          "title": "Energy Consumption (kWh)",
+          "title": "Energy Generated (kWh)",
           "scale": {"zero": false, "domain": [200, 1400]}
         },
         "tooltip": [
           {"field": "sa2_name", "type": "nominal", "title": "SA2 Area"},
           {"field": "sa4_name", "type": "nominal", "title": "SA4 Area"},
           {"field": "Population Density", "type": "quantitative", "title": "Population Density (persons/km²)"},
-          {"field": "Energy Consumption", "type": "quantitative", "title": "Energy Consumption (kWh)"}
+          {"field": "Energy Consumption", "type": "quantitative", "title": "Energy Generated (kWh)"}
         ]
       }
     },
