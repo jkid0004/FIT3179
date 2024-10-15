@@ -2,13 +2,13 @@
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "background": "#f9f9f9",
   "data": {
-    "url": "../data/wateruse.csv"
+    "url": "./data/wateruse.csv"
   },
   "transform": [
     {
       "lookup": "Suburbs",
       "from": {
-        "data": {"url": "../data/supplied-sa2s.csv"},
+        "data": {"url": "./data/supplied-sa2s.csv"},
         "key": "sa2_name",
         "fields": ["Mean - 2010 (kWh)"]
       }
