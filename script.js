@@ -102,8 +102,7 @@ function updateSustainablePractices(victoriaEnergyData, landData) {
             acc.push({
                 year: parseInt(curr.Year),
                 renewables: currYear,
-                increase: increase,
-                total: parseFloat(curr.Total.replace(',', ''))
+                increase: increase
             });
         }
         return acc;
@@ -130,9 +129,6 @@ function updateSustainablePractices(victoriaEnergyData, landData) {
             </div>
             <div style="margin-left: 10px;">
                 Increase: ${item.increase.toFixed(2)} PJ
-            </div>
-            <div style="margin-left: 10px;">
-                Total Energy: ${item.total.toFixed(1)} PJ
             </div>
         </li>
     `).join('');
